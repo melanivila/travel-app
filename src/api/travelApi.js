@@ -1,4 +1,5 @@
 import axios from "axios";
+// import { REACT_APP_API_KEY, ACCOUNT } from '@env';
 
 const travelApi = axios.create({
   baseURL: "https://www.triposo.com/api/20220705",
@@ -8,4 +9,4 @@ const travelApi = axios.create({
   },
 });
 
-export default searchApi;
+export default travelApi;
