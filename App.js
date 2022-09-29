@@ -1,13 +1,20 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { HomeScreen } from "./src/screens/HomeScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import Navigator from "./src/navigator/Navigator";
+// import { StyleSheet, Text, View } from "react-native";
+// import { HomeScreen } from "./src/screens/HomeScreen";
+
 // import { StatusBar } from "expo-status-bar";
 // import { SingInScreen } from "./src/screens/SingInScreen";
 
 export default function App() {
-  return <HomeScreen />;
+  return (
+    <NavigationContainer>
+      <Navigator />
+    </NavigationContainer>
+  );
   // (
-  //   <View style={styles.container}> 
+  //   <View style={styles.container}>
   //     <StatusBar style="auto" />
   //   </View>
   // );
