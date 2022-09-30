@@ -1,6 +1,6 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import Navigator from "./src/navigator/Navigator";
+import TabNavigator from "./src/navigator/TabNavigator";
 // import { StyleSheet, Text, View } from "react-native";
 // import { HomeScreen } from "./src/screens/HomeScreen";
 
@@ -10,7 +10,7 @@ import Navigator from "./src/navigator/Navigator";
 export default function App() {
   return (
     <NavigationContainer>
-      <Navigator />
+      <TabNavigator />
     </NavigationContainer>
   );
   // (

@@ -1,8 +1,13 @@
 import { StyleSheet } from "react-native";
-import { COLORS, SIZES } from "./theme";
+import { COLORS, screenWidth, SIZES } from "./theme";
 
 export const styles = StyleSheet.create({
   //Common styles
+  basicContainer: {
+    flex: 1,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
   commonBtn: {
     backgroundColor: COLORS.lightblue,
     width: 220,
@@ -18,12 +23,12 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 50,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   inputTitle: {
     color: COLORS.white,
     fontSize: 15,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   //Home Styles
   homeContainer: {
@@ -50,9 +55,40 @@ export const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: COLORS.lightGray,
-    borderRadius:  SIZES.radius,
+    borderRadius: SIZES.radius,
     width: 260,
     height: 40,
     marginVertical: 10,
-  }
+  },
+  //SearchScreen
+  searchBarContainer: {
+    marginVertical: 15,
+    // position: "absolute",
+    width: screenWidth - 40,
+    marginHorizontal: 20,
+  },
+  searchBar: {
+    flexDirection: "row",
+    backgroundColor: COLORS.transparentWhite,
+    borderRadius: 50,
+    height: 40,
+    marginHorizontal: 10,
+    paddingHorizontal: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+    elevation: 6,
+    top: 35,
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: SIZES.body3,
+    top: 2,
+  },
 });
