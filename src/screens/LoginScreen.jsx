@@ -6,7 +6,7 @@ import { Input } from "../components/Input";
 import { CommonBtn } from "../components/CommonBtn";
 import useRandomBackground from "../hooks/useRandomBackground";
 
-export const SingInScreen = () => {
+export const LoginScreen = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const { uri } = useRandomBackground();

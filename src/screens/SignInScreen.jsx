@@ -5,6 +5,7 @@ import { styles } from "../theme/styles";
 import { Input } from "../components/Input";
 import { CommonBtn } from "../components/CommonBtn";
 import useRandomBackground from "../hooks/useRandomBackground";
+import { BackIcon } from "../components/BackIcon";
 
 export const SingInScreen = () => {
   const [email, setEmail] = useState();
@@ -23,8 +24,16 @@ export const SingInScreen = () => {
         blurRadius={3}
       >
         <View style={{ flex: 1, backgroundColor: COLORS.transparentBlack3 }}>
+          <BackIcon
+            onPress={ console.log( 'atras' ) }
+            name= 'arrow-back-outline'
+            size={ 45 }
+            color= 'white'
+          />
           <View style={styles.inputsContainer}>
-            <Text style={styles.title}>TravelOn</Text>
+            <View style={{ flexDirection: "row"}}>
+                  <Text style={styles.title}>TravelOn</Text>                
+            </View>
             <View>
               <Input text="Email:" value={email} />
               <Input text="Password:" value={password} />
