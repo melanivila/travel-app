@@ -19,15 +19,12 @@ export const styles = StyleSheet.create({
   },
   title: {
     color: COLORS.white,
-    fontSize: 15,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 50,
+    fontSize: SIZES.h3,
     fontWeight: "bold",
   },
   inputTitle: {
     color: COLORS.white,
-    fontSize: 15,
+    fontSize: SIZES.body3,
     fontWeight: "bold",
   },
   //Home Styles
@@ -37,6 +34,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 10,
     marginHorizontal: 70,
+    bottom: 20,
   },
   largeTitle: {
     color: COLORS.white,

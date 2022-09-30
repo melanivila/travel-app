@@ -1,44 +1,42 @@
 import React, { useState } from "react";
-import { ImageBackground, Text, View } from "react-native";
-import { COLORS } from "../theme/theme";
+import { Text, View } from "react-native";
 import { styles } from "../theme/styles";
 import { Input } from "../components/Input";
 import { CommonBtn } from "../components/CommonBtn";
-import useRandomBackground from "../hooks/useRandomBackground";
+import { BackIcon } from "../components/BackIcon";
+import { ImgBackground } from "../components/ImgBackground";
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ route }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const { uri } = useRandomBackground();
+
+  const { uri } = route.params;
 
   return (
     <>
-      <ImageBackground
-        source={{
-          uri: uri,
-        }}
-        style={{ flex: 1 }}
-        resizeMode="cover"
-        blurRadius={3}
-      >
-        <View style={{ flex: 1, backgroundColor: COLORS.transparentBlack3 }}>
-          <View style={styles.inputsContainer}>
-            <Text style={styles.title}>TravelOn</Text>
-            <View>
-              <Input text="Email:" value={email} />
-              <Input text="Password:" value={password} />
-            </View>
-            <View>
-              <Text style={{ color: "red", marginBottom: 10 }}>
-                Validations here
-              </Text>
-            </View>
-            <View>
-              <CommonBtn title="Log In" />
-            </View>
+      <ImgBackground uri={uri}>
+        <BackIcon
+          // onPress={console.log("atras")}
+          name="arrow-back-outline"
+          size={45}
+          color="white"
+        />
+        <View style={styles.inputsContainer}>
+          <Text style={styles.title}>TravelOn</Text>
+          <View>
+            <Input text="Email:" value={email} />
+            <Input text="Password:" value={password} />
+          </View>
+          <View>
+            <Text style={{ color: "red", marginBottom: 10 }}>
+              Validations here
+            </Text>
+          </View>
+          <View>
+            <CommonBtn title="Log In" />
           </View>
         </View>
-      </ImageBackground>
+      </ImgBackground>
     </>
   );
 };
