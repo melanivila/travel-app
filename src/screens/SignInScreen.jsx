@@ -5,16 +5,20 @@ import { COLORS } from "../theme/theme";
 import { styles } from "../theme/styles";
 import { Input } from "../components/Input";
 import { CommonBtn } from "../components/CommonBtn";
+import useRandomBackground from "../hooks/useRandomBackground";
 
 export const SingInScreen = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
+  const { uri } = useRandomBackground();
 
   return (
     <>
       <ImageBackground
-        source={backgroundImage}
+        source={{
+          uri: uri,
+        }}
         style={{ flex: 1 }}
         resizeMode="cover"
         blurRadius={3}

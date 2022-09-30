@@ -1,23 +1,31 @@
 import axios from 'axios';
-import { useEffect } from 'react';
-import travelApi from '../api/travelApi';
+import { useEffect, useState } from 'react';
 
-export const useRandomBackground = () => {
+ const useRandomBackground = () => {
 
-    // const [background, setBackground] = useState();
-
-    useEffect(() => {
-      
-        getRandomBackground()
+    const [uri, setUri] = useState(
+        "https://media.tenor.com/b1YK8dNH7GMAAAAd/bird-plane.gif"
+      );
     
-    }, [])
+      useEffect(() => {
+        const newRandomNumber = Math.floor(Math.random() * 10);
+        getRandomBackground(newRandomNumber);
+      }, []);
     
-    const getRandomBackground = async() => {
-        
-        const randomBackground = await travelApi.get( '/location.json' );
+      const getRandomBackground = async (number) => {
+        const randomBackground = await axios.get(
+          "https://www.triposo.com/api/20220705/location.json?account=TWJJT5GS&token=4adavfcfoda6070lym6mdp3k00vgwuab&count=10"
+        );
+        const newUri =
+          randomBackground.data.results[number].images[0].sizes.original.url;
+    
+        setUri(newUri);
+      };
 
-        console.log( randomBackground )
-
-    }
+      return {
+        uri,
+      }
 
 }
+
+export default useRandomBackground;
