@@ -7,7 +7,9 @@ import { styles } from "../theme/styles";
 import { COLORS, SIZES } from "../theme/theme";
 
 export const HomeScreen = () => {
-  const [uri, setUri] = useState();
+  const [uri, setUri] = useState(
+    "https://media.tenor.com/b1YK8dNH7GMAAAAd/bird-plane.gif"
+  );
 
   useEffect(() => {
     const newRandomNumber = Math.floor(Math.random() * 10);
@@ -27,10 +29,12 @@ export const HomeScreen = () => {
   return (
     <>
       <ImageBackground
-        source={{ uri: uri }}
+        source={{
+          uri: uri,
+        }}
         style={{ flex: 1 }}
         resizeMode="cover"
-        blurRadius={4}
+        blurRadius={3}
       >
         <View style={{ flex: 1, backgroundColor: COLORS.transparentBlack3 }}>
           <View style={styles.homeContainer}>
