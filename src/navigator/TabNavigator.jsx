@@ -1,10 +1,8 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { HomeScreen } from "../screens/HomeScreen";
-import { SingInScreen } from "../screens/SignInScreen";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { COLORS, SIZES } from "../theme/theme";
-import { SearchScreen } from "../screens/SearchScreen";
+import { SearchScreen, DetailsScreen, LoginScreen } from "../screens";
 
 const Tab = createBottomTabNavigator();
 
@@ -12,10 +10,10 @@ export default function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({ focused, color }) => {
           let iconName;
 
-          if (route.name === "Home") {
+          if (route.name === "Details") {
             iconName = focused ? "home-sharp" : "home-outline";
           } else if (route.name === "Search") {
             iconName = focused ? "search-sharp" : "search-outline";
@@ -23,17 +21,18 @@ export default function TabNavigator() {
             iconName = focused ? "person-sharp" : "person-outline";
           }
 
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Ionicons name={iconName} size={25} color={color} />;
         },
         // tabBarHideOnKeyboard: true,
         tabBarShowLabel: false,
         tabBarActiveTintColor: COLORS.lightblue,
         tabBarInactiveTintColor: COLORS.lightGray,
         headerShown: false,
+
         tabBarStyle: {
           position: "absolute",
           bottom: 20,
-          backgroundColor: "black",
+          backgroundColor: COLORS.black,
           height: 60,
           marginHorizontal: "5%",
           borderRadius: SIZES.radius,
@@ -50,9 +49,10 @@ export default function TabNavigator() {
         },
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Profile" component={LoginScreen} />
       <Tab.Screen name="Search" component={SearchScreen} />
-      <Tab.Screen name="Profile" component={SingInScreen} />
+      <Tab.Screen name="Details" component={DetailsScreen} />
+      {/* <Tab.Screen name="Profile" component={DetailsScreen} /> */}
     </Tab.Navigator>
   );
 }
