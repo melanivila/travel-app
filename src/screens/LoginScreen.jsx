@@ -9,7 +9,6 @@ import useRandomBackground from "../hooks/useRandomBackground";
 export const SingInScreen = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
   const { uri } = useRandomBackground();
 
   return (
@@ -28,7 +27,6 @@ export const SingInScreen = () => {
             <View>
               <Input text="Email:" value={email} />
               <Input text="Password:" value={password} />
-              <Input text="Confirm Password:" value={confirmPassword} />
             </View>
             <View>
               <Text style={{ color: "red", marginBottom: 10 }}>
@@ -36,7 +34,7 @@ export const SingInScreen = () => {
               </Text>
             </View>
             <View>
-              <CommonBtn title="Sign in" />
+              <CommonBtn title="Log In" />
             </View>
           </View>
         </View>

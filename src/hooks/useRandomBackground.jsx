@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
  const useRandomBackground = () => {
 
     const [uri, setUri] = useState(
-        "https://media.tenor.com/b1YK8dNH7GMAAAAd/bird-plane.gif"
+        "https://i.pinimg.com/originals/eb/70/7a/eb707ae7096cc8df384f1bf87dab547a.gif"
       );
     
       useEffect(() => {
