@@ -1,5 +1,6 @@
 import { Dimensions } from "react-native";
-const { width, height } = Dimensions.get("window");
+export const { width: screenWidth, height: screenHeight } =
+  Dimensions.get("window");
 
 export const COLORS = {
   errorMsg: "#FC0C0C",
@@ -46,10 +47,10 @@ export const SIZES = {
   body5: 12,
 
   // app dimensions
-  width,
-  height,
+  screenWidth,
+  screenHeight,
 };
 
-const appTheme = { COLORS, SIZES };
+const appTheme = { COLORS, SIZES, screenWidth, screenHeight };
 
 export default appTheme;
