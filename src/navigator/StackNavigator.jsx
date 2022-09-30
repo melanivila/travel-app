@@ -3,7 +3,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { HomeScreen } from "../screens/HomeScreen";
 import { SingInScreen } from "../screens/SignInScreen";
 import { LoginScreen } from "../screens/LoginScreen";
-import TabNavigator from "./TabNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +16,7 @@ export const StackNavigator = () => {
     >
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="SignIn" component={SingInScreen} />
-      <Stack.Screen name="Login" component={TabNavigator} />
+      <Stack.Screen name="Login" component={LoginScreen} />
     </Stack.Navigator>
   );
 };

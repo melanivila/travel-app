@@ -46,6 +46,7 @@ export default function TabNavigator() {
           shadowRadius: 3.84,
 
           elevation: 5,
+          s,
         },
       })}
     >
