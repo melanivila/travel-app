@@ -2,8 +2,14 @@ import React from 'react'
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { styles } from '../theme/styles'
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { usePopularLocation } from '../hooks/usePopularLocation';
+import { CardFlatList } from '../components/CardFlatList';
+
 
 export const LoguedScreen = () => {
+
+  const { uri } = usePopularLocation();
+  // console.log(uri);
   return (
     <View>
         <View style={ styles.loguedScreenHeader }>
@@ -21,7 +27,13 @@ export const LoguedScreen = () => {
           </TouchableOpacity>
         </View>
         <ScrollView>
-          
+          <View style={{ marginVertical: 60 }}>
+            <CardFlatList
+              title = 'Popular Places'
+              item = { uri }
+              OnPress = { console.log('Details') }
+            />
+          </View>
         </ScrollView>
     </View>
   )
