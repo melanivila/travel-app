@@ -89,4 +89,19 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.body3,
     top: 2,
   },
+  loguedScreenHeader: {
+    backgroundColor: 'white',
+    top: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+        width: 0,
+        height: 6,
+    },
+    shadowOpacity: 0.9,
+    shadowRadius: 7.49,
+    elevation: 10,
+},
 });
