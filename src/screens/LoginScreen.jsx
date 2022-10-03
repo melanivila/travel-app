@@ -5,8 +5,11 @@ import { Input } from "../components/Input";
 import { CommonBtn } from "../components/CommonBtn";
 import { BackIcon } from "../components/BackIcon";
 import { ImgBackground } from "../components/ImgBackground";
+// import { useNavigation } from "@react-navigation/native";
 
-export const LoginScreen = ({ route }) => {
+export const LoginScreen = ({ route, navigation }) => {
+  // const navigation = useNavigation();
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -33,7 +36,10 @@ export const LoginScreen = ({ route }) => {
             </Text>
           </View>
           <View>
-            <CommonBtn title="Log In" />
+            <CommonBtn
+              title="Log In"
+              onPress={() => navigation.navigate("Logged")}
+            />
           </View>
         </View>
       </ImgBackground>

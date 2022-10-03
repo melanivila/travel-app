@@ -1,15 +1,13 @@
 import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen } from "../screens/HomeScreen";
-import { SingInScreen } from "../screens/SignInScreen";
-import { LoginScreen } from "../screens/LoginScreen";
+import { createStackNavigator } from "@react-navigation/stack";
+import { HomeScreen, SingInScreen, LoginScreen } from "../screens";
+import TabNavigator from "./TabNavigator";
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 export const StackNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
       }}
@@ -17,6 +15,7 @@ export const StackNavigator = () => {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="SignIn" component={SingInScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Logged" component={TabNavigator} />
     </Stack.Navigator>
   );
 };

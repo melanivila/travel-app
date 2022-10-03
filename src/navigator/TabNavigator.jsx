@@ -2,7 +2,12 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { COLORS, SIZES } from "../theme/theme";
-import { SearchScreen, DetailsScreen, LoginScreen } from "../screens";
+import {
+  SearchScreen,
+  DetailsScreen,
+  LoginScreen,
+  LoguedScreen,
+} from "../screens";
 
 const Tab = createBottomTabNavigator();
 
@@ -13,11 +18,11 @@ export default function TabNavigator() {
         tabBarIcon: ({ focused, color }) => {
           let iconName;
 
-          if (route.name === "Details") {
+          if (route.name === "Logged") {
             iconName = focused ? "home-sharp" : "home-outline";
           } else if (route.name === "Search") {
             iconName = focused ? "search-sharp" : "search-outline";
-          } else if (route.name === "Profile") {
+          } else if (route.name === "Details") {
             iconName = focused ? "person-sharp" : "person-outline";
           }
 
@@ -28,7 +33,6 @@ export default function TabNavigator() {
         tabBarActiveTintColor: COLORS.lightblue,
         tabBarInactiveTintColor: COLORS.lightGray,
         headerShown: false,
-
         tabBarStyle: {
           position: "absolute",
           bottom: 20,
@@ -46,11 +50,10 @@ export default function TabNavigator() {
           shadowRadius: 3.84,
 
           elevation: 5,
-          s,
         },
       })}
     >
-      <Tab.Screen name="Profile" component={LoginScreen} />
+      <Tab.Screen name="Logged" component={LoguedScreen} />
       <Tab.Screen name="Search" component={SearchScreen} />
       <Tab.Screen name="Details" component={DetailsScreen} />
       {/* <Tab.Screen name="Profile" component={DetailsScreen} /> */}
