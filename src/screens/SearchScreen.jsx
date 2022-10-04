@@ -1,47 +1,139 @@
-import React, { useState } from "react";
-import { Image, Switch, Text, View } from "react-native";
-import { CommonBtn } from "../components/CommonBtn";
+import React, { useState, useEffect } from "react";
+import { FlatList, Image, ScrollView, Text, View } from "react-native";
+// import { CommonBtn } from "../components/CommonBtn";
 import { SearchBar } from "../components/SearchBar";
 import { styles } from "../theme/styles";
 import { screenWidth, SIZES } from "../theme/theme";
+import travelApi from "../api/travelApi";
+// import axios from "axios";
+// import { useDebounceValue } from "../hooks/useDebounceValue";
 
 export const SearchScreen = () => {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const [term, setTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("location");
+
+  useEffect(() => {
+    loadResults();
+    console.log(selectedOption, term);
+    console.log(
+      `${selectedOption}.json?annotate=trigram:${term}&trigram=%3E=0.5&count=10`
+    );
+  }, [selectedOption, term]);
+
+  const loadResults = async () => {
+    // let params;
+    // if (selectedOption === "location") {
+    //   params = "fields=id,name,score,country_id,parent_id,snippet,images";
+    // }
+    // if (selectedOption === "poi") {
+    //   params = "fields=id,name,score,snippet,images";
+    // }
+    const res = await travelApi.get(
+      `/${selectedOption}.json?annotate=trigram:${term}&trigram=%3E=0.5&count=10`
+    );
+    setSearchResults(res.data.results);
+  };
 
   return (
     <View style={styles.basicContainer}>
-      <SearchBar />
-      <Switch
-        trackColor={{ false: "#767577", true: "#81b0ff" }}
-        thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitch}
-        value={isEnabled}
+      <SearchBar
+        onDebounce={(value) => setTerm(value)}
+        onValueChange={(value) => setSelectedOption(value)}
       />
-      <View
-        style={{
-          flexDirection: "row",
-          backgroundColor: "white",
-          borderRadius: SIZES.radius,
-          width: screenWidth - 40,
-        }}
-      >
-        <Image
-          source={{
-            uri: "http://api-images-www.triposo.com/api/20220705/image/gAAAAABjNvLacbfn5BM0wOTOVN2gxRyPShWt1m9hX-YARRisspwqklmMwHfc6WfCSEPhRLhMOARImXgA7mziHuyqKpDBpxIGiFoJC1luxRAKyaHCpu62ueP9LVRum2hxjhvkP7bcFp00MlxkmAmneKHnn9VsXtBhFX3NrHn72eFsvo5rZ3c0GAxA5JgMjqKX2vYafnD0Iv_OVOnc2g-DBNgY1pqnzBLnkgpzFpqVtIJrfhTTHbcbv0zGhEyGP0a_RB2RHpJm1iZiuDOn_6dhDd3SQvilvX_3YQ==",
-          }}
-          style={{ width: 120, height: 100, borderRadius: SIZES.radius }}
-          resizeMode="cover"
-        />
-        <View style={{ flexDirection: "column" }}>
-          <Text>Paris - France</Text>
-          <Text></Text>
-        </View>
-      </View>
-      <View style={{ bottom: 80 }}>
+      {/* <ScrollView> */}
+      <FlatList
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <View
+            style={{
+              flexDirection: "row",
+              backgroundColor: "white",
+              borderRadius: SIZES.radius,
+              width: screenWidth - 40,
+              top: 70,
+              marginVertical: 10,
+              margin: 10,
+            }}
+            key={item.id}
+          >
+            {item.images.length == !0 && (
+              <Image
+                source={{
+                  uri: item.images[0].source_url,
+                  // images.length > 2
+                  //   ? images[0].sizes.medium.url
+                  //   : images[0].sizes.medium.url,
+                }}
+                style={{
+                  width: 120,
+                  height: 100,
+                  borderRadius: SIZES.radius,
+                }}
+                resizeMode="cover"
+              />
+            )}
+            <View
+              style={{
+                flexDirection: "column",
+                width: screenWidth - 170,
+              }}
+            >
+              <Text onPress={() => console.log(item.images[0].source_url)}>
+                {item.name}
+              </Text>
+              <Text>{item.snippet}</Text>
+            </View>
+          </View>
+        )}
+        data={searchResults}
+      />
+      {/* {searchResults?.map(({ id, name, snippet, images }) => (
+          <View
+            style={{
+              flexDirection: "row",
+              backgroundColor: "white",
+              borderRadius: SIZES.radius,
+              width: screenWidth - 40,
+              top: 70,
+              marginVertical: 10,
+              margin: 10,
+            }}
+            key={id}
+          >
+            {images.length == !0 && (
+              <Image
+                source={{
+                  uri: images[0].source_url,
+                  // images.length > 2
+                  //   ? images[0].sizes.medium.url
+                  //   : images[0].sizes.medium.url,
+                }}
+                style={{
+                  width: 120,
+                  height: 100,
+                  borderRadius: SIZES.radius,
+                }}
+                resizeMode="cover"
+              />
+            )}
+            <View
+              style={{
+                flexDirection: "column",
+                width: screenWidth - 170,
+              }}
+            >
+              <Text onPress={() => console.log(images[0].source_url)}>
+                {name}
+              </Text>
+              <Text>{snippet}</Text>
+            </View>
+          </View>
+        ))} */}
+      {/* </ScrollView> */}
+      {/* <View style={{ bottom: 80 }}>
         <CommonBtn title="Search" />
-      </View>
+      </View> */}
     </View>
   );
 };
