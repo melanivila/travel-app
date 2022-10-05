@@ -97,16 +97,14 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
-<<<<<<< HEAD
       width: 0,
       height: 6,
-=======
-        width: 0,
-        height: 20,
->>>>>>> 5bee1a88294d5d772724755d6a985003e6a585ee
     },
     shadowOpacity: 0.9,
     shadowRadius: 7.49,
     elevation: 10,
+  },
+  loguedCardCarrousel: {
+    marginTop: 40,
   },
 });
