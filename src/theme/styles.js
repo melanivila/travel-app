@@ -104,4 +104,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 7.49,
     elevation: 10,
   },
+  loguedCardCarrousel: {
+    marginTop: 40,
+  },
 });
