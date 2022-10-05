@@ -1,26 +1,57 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
+import travelApi from "../api/travelApi";
 
 export const usePopularLocation = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [popularLocation, setPopularLocation] = useState({
+    popularPlaces: [],
+    popularCities: [],
+    popularCountries: [],
+    popularReserves: [],
+    popularIslands: [],
+  });
 
-    const [uri, setUri] = useState();
-    
-      useEffect(() => {
-        // const newRandomLocation = Math.floor(Math.random() * 10);
-        getRandomLocation();
-      }, []);
-    
-      const getRandomLocation = async () => {
-        const randomLocation = await axios.get(
-          "https://www.triposo.com/api/20220705/location.json?account=TWJJT5GS&token=4adavfcfoda6070lym6mdp3k00vgwuab&count=10"
-        );
-        const newUri =
-          randomLocation.data.results;
-    
-        setUri(newUri);
-      };
+  useEffect(() => {
+    // const newRandomLocation = Math.floor(Math.random() * 10);
+    setIsLoading(true);
+    getLocation();
+    setIsLoading(false);
+  }, []);
+
+  const getLocation = async () => {
+    const popularPlacesPromise = travelApi.get("/poi.json?");
+    const popularCitiesPromise = travelApi.get(
+      "/location.json?tag_labels=city"
+    );
+    const popularCountriesPromise = travelApi.get(
+      "/location.json?tag_labels=country"
+    );
+    const popularReservesPromise = travelApi.get(
+      "/location.json?tag_labels=national_park"
+    );
+    const popularIslandsPromise = travelApi.get(
+      "/location.json?tag_labels=island"
+    );
+
+    const response = await Promise.all([
+      popularPlacesPromise,
+      popularCitiesPromise,
+      popularCountriesPromise,
+      popularReservesPromise,
+      popularIslandsPromise,
+    ]);
+
+    setPopularLocation({
+      popularPlaces: response[0].data.results,
+      popularCities: response[1].data.results,
+      popularCountries: response[2].data.results,
+      popularReserves: response[3].data.results,
+      popularIslands: response[4].data.results,
+    });
+  };
 
   return {
-    uri,
-  }
-}
+    ...popularLocation,
+    isLoading,
+  };
+};

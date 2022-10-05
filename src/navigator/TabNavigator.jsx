@@ -18,7 +18,7 @@ export default function TabNavigator() {
         tabBarIcon: ({ focused, color }) => {
           let iconName;
 
-          if (route.name === "Logged") {
+          if (route.name === "Home") {
             iconName = focused ? "home-sharp" : "home-outline";
           } else if (route.name === "Search") {
             iconName = focused ? "search-sharp" : "search-outline";
@@ -53,7 +53,7 @@ export default function TabNavigator() {
         },
       })}
     >
-      <Tab.Screen name="Logged" component={LoguedScreen} />
+      <Tab.Screen name="Home" component={LoguedScreen} />
       <Tab.Screen name="Search" component={SearchScreen} />
       <Tab.Screen name="Details" component={DetailsScreen} />
       {/* <Tab.Screen name="Profile" component={DetailsScreen} /> */}
