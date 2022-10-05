@@ -119,7 +119,7 @@ export const SearchScreen = () => {
           data={searchResults}
         />
       )} */}
-        {searchResults?.map((item, index) => {
+        {searchResults?.map((item) => {
           {
             /* console.log(index + "has" + item.images.length); */
           }
