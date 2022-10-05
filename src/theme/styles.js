@@ -96,6 +96,7 @@ export const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     shadowColor: "#000",
+    zIndex: 999,
     shadowOffset: {
       width: 0,
       height: 20,
@@ -103,8 +104,5 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.9,
     shadowRadius: 7.49,
     elevation: 10,
-  },
-  loguedCardCarrousel: {
-    marginTop: 40,
   },
 });

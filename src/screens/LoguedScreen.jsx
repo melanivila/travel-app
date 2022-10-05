@@ -1,9 +1,8 @@
 import React from 'react'
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import { styles } from '../theme/styles'
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { ScrollView, View } from 'react-native'
 import { usePopularLocation } from '../hooks/usePopularLocation';
 import { CardFlatList } from '../components/CardFlatList';
+import { Header } from '../components/Header';
 
 
 export const LoguedScreen = () => {
@@ -11,25 +10,26 @@ export const LoguedScreen = () => {
   const { uri } = usePopularLocation();
   // console.log(uri);
   return (
-    <View>
-        <View style={ styles.loguedScreenHeader }>
-          <Image
-              source= { require('../assets/TempLogo.png') }
-              style={{ width: 60, height: 60 }}
-          />
-          <Text style={{ color: 'black', fontSize: 18, fontWeight: 'bold' }}>TravelOn</Text>
-          <TouchableOpacity>
-            <Ionicons
-              name= 'heart-outline'
-              size={ 35 }
-              color= 'black'
-            />
-          </TouchableOpacity>
-        </View>
+    <View style={{ marginBottom: 140 }}>
+      <Header/>
         <ScrollView>
-          <View style={{ marginVertical: 60 }}>
+          <View style={{ marginTop: 80 }}>
             <CardFlatList
               title = 'Popular Places'
+              item = { uri }
+              OnPress = { console.log('Details') }
+            />
+          </View>
+          <View style={{ marginTop: 40 }}>
+            <CardFlatList
+              title = 'Popular Islands'
+              item = { uri }
+              OnPress = { console.log('Details') }
+            />
+          </View>
+          <View style={{ marginTop: 40 }}>
+            <CardFlatList
+              title = 'Popular Reserves'
               item = { uri }
               OnPress = { console.log('Details') }
             />
