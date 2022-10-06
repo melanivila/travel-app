@@ -105,4 +105,13 @@ export const styles = StyleSheet.create({
     shadowRadius: 7.49,
     elevation: 10,
   },
+  profileText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  deleteAccountBtn: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'red'
+  },
 });

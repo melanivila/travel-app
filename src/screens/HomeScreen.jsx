@@ -7,6 +7,7 @@ import { styles } from "../theme/styles";
 import { COLORS, SIZES } from "../theme/theme";
 
 export const HomeScreen = ({ navigation }) => {
+
   const { uri } = useRandomBackground();
 
   return (

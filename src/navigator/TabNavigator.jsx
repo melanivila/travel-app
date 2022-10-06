@@ -7,6 +7,7 @@ import {
   DetailsScreen,
   LoginScreen,
   LoguedScreen,
+  ProfileScreen,
 } from "../screens";
 
 const Tab = createBottomTabNavigator();
@@ -22,10 +23,9 @@ export default function TabNavigator() {
             iconName = focused ? "home-sharp" : "home-outline";
           } else if (route.name === "Search") {
             iconName = focused ? "search-sharp" : "search-outline";
-          } else if (route.name === "Details") {
+          } else if (route.name === "Profile") {
             iconName = focused ? "person-sharp" : "person-outline";
           }
-
           return <Ionicons name={iconName} size={25} color={color} />;
         },
         // tabBarHideOnKeyboard: true,
@@ -55,7 +55,7 @@ export default function TabNavigator() {
     >
       <Tab.Screen name="Home" component={LoguedScreen} />
       <Tab.Screen name="Search" component={SearchScreen} />
-      <Tab.Screen name="Details" component={DetailsScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
       {/* <Tab.Screen name="Profile" component={DetailsScreen} /> */}
     </Tab.Navigator>
   );

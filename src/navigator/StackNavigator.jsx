@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { HomeScreen, SingInScreen, LoginScreen, DetailsScreen } from "../screens";
+import { HomeScreen, SingInScreen, LoginScreen, DetailsScreen, FavScreen } from "../screens";
 import TabNavigator from "./TabNavigator";
 
 const Stack = createStackNavigator();
@@ -17,6 +17,7 @@ export const StackNavigator = () => {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Logged" component={TabNavigator} />
       <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Screen name="Fav" component={FavScreen} />
     </Stack.Navigator>
   );
 };
