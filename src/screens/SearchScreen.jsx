@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, Image, ScrollView, Text, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 // import { CommonBtn } from "../components/CommonBtn";
 import { SearchBar } from "../components/SearchBar";
 import { styles } from "../theme/styles";
 import { screenWidth, SIZES } from "../theme/theme";
 import travelApi from "../api/travelApi";
+import { useNavigation } from "@react-navigation/native";
 // import axios from "axios";
 // import { useDebounceValue } from "../hooks/useDebounceValue";
 
 export const SearchScreen = () => {
+  const navigation = useNavigation();
   const [term, setTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectedOption, setSelectedOption] = useState("location");
@@ -120,79 +129,76 @@ export const SearchScreen = () => {
         />
       )} */}
         {searchResults?.map((item) => {
-          {
-            /* console.log(index + "has" + item.images.length); */
-          }
-          {
-            /* console.log(item.images[0]); */
-          }
-          {
-            /* console.log(item.images[0].source_url ? "true" : "false"); */
-          }
           return (
-            <View
-              style={{
-                flexDirection: "row",
-                backgroundColor: "white",
-                borderRadius: SIZES.radius,
-                width: screenWidth - 40,
-                top: 70,
-                marginVertical: 10,
-                margin: 10,
-              }}
-              key={item.id}
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Details", { location: item.id })
+              }
             >
-              {item.images.length === 0 ? (
-                <Image
-                  source={{
-                    uri: "https://www.quicideportes.com/assets/images/custom/no-image.png",
-                    // images.length > 2
-                    //   ? images[0].sizes.medium.url
-                    //   : images[0].sizes.medium.url,
-                  }}
-                  style={{
-                    width: 120,
-                    height: 100,
-                    borderRadius: SIZES.radius,
-                  }}
-                  resizeMode="cover"
-                />
-              ) : (
-                <Image
-                  source={{
-                    uri:
-                      item.images.length === 1
-                        ? item.images[0].source_url
-                        : item.images.length > 2
-                        ? item.images[0].sizes.medium.url
-                        : null,
-
-                    // images.length > 2
-                    //   ? images[0].sizes.medium.url
-                    //   : images[0].sizes.medium.url,
-                  }}
-                  style={{
-                    width: 120,
-                    height: 100,
-                    borderRadius: SIZES.radius,
-                  }}
-                  resizeMode="cover"
-                />
-              )}
               <View
                 style={{
-                  flexDirection: "column",
-                  width: screenWidth - 170,
+                  flexDirection: "row",
+                  backgroundColor: "white",
+                  borderRadius: SIZES.radius,
+                  width: screenWidth - 40,
+                  top: 70,
+                  marginVertical: 10,
+                  margin: 10,
                 }}
+                key={item.id}
               >
-                <Text
-                //  onPress={() => console.log(item.images[0].source_url)}
+                {item.images.length === 0 ? (
+                  <Image
+                    source={{
+                      uri: "https://www.quicideportes.com/assets/images/custom/no-image.png",
+                      // images.length > 2
+                      //   ? images[0].sizes.medium.url
+                      //   : images[0].sizes.medium.url,
+                    }}
+                    style={{
+                      width: 120,
+                      height: 100,
+                      borderRadius: SIZES.radius,
+                    }}
+                    resizeMode="cover"
+                  />
+                ) : (
+                  <Image
+                    source={{
+                      uri:
+                        item.images.length === 1
+                          ? item.images[0].source_url
+                          : item.images.length > 2
+                          ? item.images[0].sizes.medium.url
+                          : null,
+
+                      // images.length > 2
+                      //   ? images[0].sizes.medium.url
+                      //   : images[0].sizes.medium.url,
+                    }}
+                    style={{
+                      width: 120,
+                      height: 100,
+                      borderRadius: SIZES.radius,
+                    }}
+                    resizeMode="cover"
+                  />
+                )}
+                <View
+                  style={{
+                    flexDirection: "column",
+                    width: screenWidth - 170,
+                  }}
                 >
-                  {item.name}
-                </Text>
-                <Text>{item.snippet}</Text>
+                  <Text
+                  //  onPress={() => console.log(item.images[0].source_url)}
+                  >
+                    {item.name}
+                  </Text>
+                  <Text>{item.snippet}</Text>
+                </View>
               </View>
-            </View>
+            </TouchableOpacity>
           );
         })}
       </ScrollView>
