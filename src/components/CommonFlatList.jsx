@@ -4,8 +4,14 @@ import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../theme/styles";
 import { CommonCard } from "./CommonCard";
 
-export const CommonFlatList = ({ title, item }) => {
+export const CommonFlatList = ({ title, item, typePOI }) => {
   const navigation = useNavigation();
+
+  let jsonParam = "location";
+
+  if (typePOI) {
+    jsonParam = "poi";
+  }
 
   return (
     <View
@@ -20,7 +26,10 @@ export const CommonFlatList = ({ title, item }) => {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate("Details", { location: item.id })
+              navigation.navigate("Details", {
+                location: item.id,
+                jsonParam: jsonParam,
+              })
             }
             activeOpacity={0.7}
           >

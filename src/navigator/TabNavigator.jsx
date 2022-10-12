@@ -28,7 +28,7 @@ export default function TabNavigator() {
         },
         // tabBarHideOnKeyboard: true,
         tabBarShowLabel: false,
-        tabBarActiveTintColor: COLORS.lightblue,
+        tabBarActiveTintColor: COLORS.bluesky,
         tabBarInactiveTintColor: COLORS.lightGray,
         headerShown: false,
         tabBarStyle: {

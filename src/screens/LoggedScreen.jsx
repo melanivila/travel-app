@@ -21,7 +21,7 @@ export const LoggedScreen = () => {
         <View style={styles.commonContainer}>
           <CommonFlatList title="Popular Cities" item={popularCities} />
           <CommonFlatList title="Popular Countries" item={popularCountries} />
-          <CommonFlatList title="Popular Places" item={popularPlaces} />
+          <CommonFlatList title="Popular Places" item={popularPlaces} typePOI />
           <CommonFlatList title="Popular Islands" item={popularIslands} />
           <CommonFlatList title="Popular Reserves" item={popularReserves} />
         </View>

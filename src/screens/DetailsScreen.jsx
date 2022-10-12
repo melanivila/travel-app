@@ -1,48 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import React from "react";
+import { FlatList, ScrollView, Text, View } from "react-native";
 import { Header } from "../components/Header";
-import travelApi from "../api/travelApi";
 import { Carousel } from "../components/Carousel";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { styles } from "../theme/styles";
 import { CommonFlatList } from "../components/CommonFlatList";
+import { useFetchDetails } from "../hooks/useFetchDetails";
+import { COLORS, screenWidth, SIZES } from "../theme/theme";
 
 export const DetailsScreen = ({ route }) => {
-  const [placeDetails, setPlaceDetails] = useState([]);
-  const [carouselImages, setCarouselImages] = useState([]);
-  const [placesToVisit, setPlacesToVisit] = useState([]);
+  const { jsonParam, location } = route.params;
 
-  let location = "London";
-  if (route.params) {
-    location = route.params.location;
-  }
+  const [placeDetails, carouselImages, placesToVisit] = useFetchDetails({
+    jsonParam,
+    location,
+  });
 
-  useEffect(() => {
-    setPlaceDetails([]);
-    getPlaceDetails();
-    getPlacesToVisit();
-  }, [location]);
+  const tags = placeDetails.tag_labels?.slice(0, 4);
 
-  const getPlaceDetails = async () => {
-    const res = await travelApi.get(`/location.json?id=${location}&fields=all`);
-    const fetchedData = res.data.results[0];
-    const fetchedCarousel = res.data.results[0].images.slice(0, 5);
-    setPlaceDetails(fetchedData);
-    setCarouselImages(fetchedCarousel);
-  };
-
-  const getPlacesToVisit = async () => {
-    const res = await travelApi.get(
-      `/poi.json?location_id=${location}&fields=id,name,images,properties,snippet`
-    );
-    const fetchedData = res.data.results;
-    setPlacesToVisit(fetchedData);
-  };
+  console.log(tags);
 
   return (
     <>
       <Header
         title={placeDetails.name}
         subTitle={placeDetails.country_id?.replace("_", " ")}
+        render
       />
       <ScrollView>
         <View style={styles.detailsContainer}>
@@ -55,11 +38,80 @@ export const DetailsScreen = ({ route }) => {
               </Text>
             </View>
           </Carousel>
-          <Text style={styles.subtitle}>Overview</Text>
-          <Text style={{ alignSelf: "flex-start" }}>
-            {placeDetails.generated_intro}
-          </Text>
-          <CommonFlatList item={placesToVisit} title="Places to visit" />
+          {jsonParam === "poi" ? (
+            <>
+              <FlatList
+                showsHorizontalScrollIndicator={false}
+                horizontal
+                data={placeDetails.tag_labels?.slice(0, 4)}
+                renderItem={({ item }) => (
+                  <View
+                    style={{
+                      backgroundColor: COLORS.lightblue,
+                      padding: 6,
+                      borderRadius: SIZES.radius,
+                      margin: 5,
+                      marginTop: 20,
+                    }}
+                  >
+                    <Text>{item}</Text>
+                  </View>
+                )}
+              />
+              <Text style={styles.subtitle}>Overview</Text>
+              <Text style={{ alignSelf: "flex-start" }}>
+                {placeDetails.generated_intro}
+              </Text>
+              <Text style={styles.subtitle}>More information</Text>
+              <View
+                style={{
+                  width: screenWidth,
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <Ionicons
+                    name="globe-outline"
+                    size={25}
+                    color={COLORS.black}
+                  />
+                  <Text>Phone</Text>
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <Ionicons
+                    name="call-outline"
+                    size={25}
+                    color={COLORS.black}
+                  />
+                  <Text>Phone</Text>
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <Ionicons
+                    name="compass-outline"
+                    size={25}
+                    color={COLORS.black}
+                  />
+                  <Text>Phone</Text>
+                </View>
+              </View>
+            </>
+          ) : (
+            <CommonFlatList item={placesToVisit} title="Places to visit" />
+          )}
         </View>
       </ScrollView>
     </>

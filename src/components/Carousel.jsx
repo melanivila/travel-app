@@ -11,10 +11,10 @@ export const Carousel = ({ carouselImages, children }) => {
         autoplay
         autoplayDelay={3}
         autoplayLoop
-        keyExtractor={(item) => item.id}
+        // keyExtractor={(item) => item.id}
         data={carouselImages}
         renderItem={({ item }) => (
-          <View style={styles.carouselImgContainer}>
+          <View style={styles.carouselImgContainer} key={item.id}>
             <Image
               style={styles.carouselImg}
               source={{ uri: item.sizes.medium.url }}

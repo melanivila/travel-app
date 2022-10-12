@@ -7,7 +7,6 @@ import { styles } from "../theme/styles";
 import { COLORS, SIZES } from "../theme/theme";
 
 export const HomeScreen = ({ navigation }) => {
-
   const { uri } = useRandomBackground();
 
   return (
@@ -31,7 +30,7 @@ export const HomeScreen = ({ navigation }) => {
               <Text
                 style={{
                   fontWeight: "bold",
-                  color: COLORS.lightblue,
+                  color: COLORS.bluesky,
                   textDecorationLine: "underline",
                 }}
                 onPress={() => navigation.navigate("Login", { uri })}
