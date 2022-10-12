@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS, screenWidth, SIZES } from "./theme";
+import { COLORS, screenHeight, screenWidth, SIZES } from "./theme";
 
 export const styles = StyleSheet.create({
   //Common styles
@@ -7,6 +7,12 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: 100,
+  },
+  commonContainer: {
+    flex: 1,
+    marginTop: 30,
+    marginLeft: 30,
     marginBottom: 100,
   },
   commonBtn: {
@@ -59,6 +65,7 @@ export const styles = StyleSheet.create({
     height: 40,
     marginVertical: 10,
   },
+
   //SearchScreen
   searchBarContainer: {
     marginVertical: 15,
@@ -89,7 +96,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     fontSize: SIZES.body3,
   },
-  loguedScreenHeader: {
+
+  //HomeLoggedScreen
+  loggedScreenHeader: {
     backgroundColor: "white",
     top: 30,
     flexDirection: "row",
@@ -105,13 +114,131 @@ export const styles = StyleSheet.create({
     shadowRadius: 7.49,
     elevation: 10,
   },
+
+  //ProfileScreen
   profileText: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   deleteAccountBtn: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: 'red'
+    fontWeight: "bold",
+    color: "red",
+  },
+
+  //DetailsScreen
+  detailsContainer: {
+    flex: 1,
+    top: 60,
+    alignItems: "center",
+    marginHorizontal: 40,
+    marginBottom: 100,
+  },
+  carouselContainer: {
+    position: "absolute",
+    top: 0,
+    width: screenWidth - 80,
+    height: 50,
+    backgroundColor: COLORS.transparentBlack3,
+    borderTopStartRadius: SIZES.radius,
+    borderTopEndRadius: SIZES.radius,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  carouselTitle: {
+    fontSize: SIZES.h1,
+    color: COLORS.white,
+    textTransform: "uppercase",
+    fontWeight: "bold",
+  },
+  subtitle: {
+    fontSize: SIZES.body2,
+    color: COLORS.lightblue,
+    fontWeight: "bold",
+    alignSelf: "flex-start",
+    marginTop: 8,
+    marginBottom: 8,
+  },
+
+  //Carousel
+  carouselShadow: {
+    height: screenHeight * 0.48,
+    width: screenWidth - 80,
+    borderRadius: SIZES.radius,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 20,
+    },
+    shadowOpacity: 0.9,
+    shadowRadius: 7.49,
+    elevation: 10,
+    marginBottom: 10,
+  },
+  carouselImgContainer: {
+    height: screenHeight * 0.48,
+    width: screenWidth - 80,
+    borderRadius: SIZES.radius,
+  },
+  carouselImg: {
+    height: screenHeight * 0.48,
+    width: screenWidth - 80,
+    borderRadius: SIZES.radius,
+    backgroundColor: COLORS.white,
+  },
+  pagination: {
+    borderRadius: 3,
+    marginHorizontal: 2,
+    width: 35,
+    height: 8,
+  },
+
+  //CommonCard
+  commonCardImgContainer: {
+    flexDirection: "row",
+    borderRadius: SIZES.radius,
+    backgroundColor: "white",
+    height: 210,
+    alignItems: "flex-end",
+    marginRight: 30,
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.9,
+    shadowRadius: 3.49,
+    elevation: 5,
+  },
+  commonCardImg: {
+    width: 250,
+    height: 210,
+    borderRadius: SIZES.radius,
+    position: "absolute",
+  },
+  commonCardContainer: {
+    // top: 90,
+    backgroundColor: COLORS.transparentBlack6,
+    width: 250,
+    alignItems: "center",
+    height: 100,
+    borderBottomStartRadius: SIZES.radius,
+    borderBottomEndRadius: SIZES.radius,
+    paddingHorizontal: 16,
+    justifyContent: "center",
+  },
+  commonCardTitle: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 18,
+    textAlign: "center",
+    bottom: 8,
+  },
+  commonCardSnippet: {
+    color: "white",
+    fontSize: 14,
+    alignSelf: "flex-start",
   },
 });
