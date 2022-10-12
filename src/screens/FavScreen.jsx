@@ -4,6 +4,6 @@ import { Header } from '../components/Header'
 
 export const FavScreen = () => {
   return (
-    <Header title={ 'Travel On' } subTitle={ 'Favorites' } icon={ 'heart-outline' }/>
+    <Header title={ 'Travel On' } subTitle={ 'Favorites' } render/>
   )
 }

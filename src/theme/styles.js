@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS, screenWidth, SIZES } from "./theme";
+import { COLORS, screenHeight, screenWidth, SIZES } from "./theme";
 
 export const styles = StyleSheet.create({
   //Common styles
@@ -112,6 +112,37 @@ export const styles = StyleSheet.create({
   deleteAccountBtn: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: 'red'
+    color: 'red',
+    marginHorizontal: 10,
+  },
+  modalBackground: {
+    backgroundColor: COLORS.lightGray,
+    top: 27,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "black",
+    zIndex: 999,
+    height: screenHeight * 0.48,
+    width: screenWidth - 80,
+    borderRadius: SIZES.radius,
+    shadowOffset: {
+      width: 0,
+      height: 20,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 4.65,
+    elevation: 6,                        
+  },
+  saveBtn: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: COLORS.lightblue,
+    marginHorizontal: 10,
+  },
+  modalText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 30,
   },
 });
