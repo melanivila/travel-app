@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Alert, Modal, Text, TouchableOpacity, View } from 'react-native';
 import { styles } from '../theme/styles';
 import { TextInput } from 'react-native-gesture-handler';
-import { COLORS } from '../theme/theme';
 
 export const UserModal = ({ modalVisible, setModalVisible, username }) => {
 

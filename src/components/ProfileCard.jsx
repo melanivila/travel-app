@@ -53,11 +53,12 @@ export const ProfileCard = ({ username, email }) => {
 
             <View>
                 {
-                    modalVisible && <UserModal
-                                        setModalVisible= { setModalVisible }
-                                        modalVisible
-                                        username
-                                    />
+                    modalVisible
+                    && <UserModal
+                            setModalVisible= { setModalVisible }
+                            modalVisible
+                            username
+                        />
                 }            
             </View>
 
