@@ -14,23 +14,7 @@ export const ProfileCard = ({ username, email }) => {
 
   return (
     <View
-        style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: COLORS.lightGray,
-            height: screenHeight * 0.48,
-            width: screenWidth - 80,
-            borderRadius: SIZES.radius,
-            alignItems: "center",
-            shadowColor: "#000",
-            shadowOffset: {
-                width: 0,
-                height: 20,
-            },
-                shadowOpacity: 0.9,
-                shadowRadius: 7.49,
-                elevation: 10,
-            }}
+        style={ styles.profileCard }
     >
         <View style={{ flexDirection: 'row' }}>
 
@@ -47,7 +31,11 @@ export const ProfileCard = ({ username, email }) => {
 
             <View>
                 {
-                    modalVisible && <UserModal setModalVisible= { setModalVisible } modalVisible />
+                    modalVisible && <UserModal
+                                        setModalVisible= { setModalVisible }
+                                        modalVisible
+                                        username
+                                    />
                 }            
             </View>
 

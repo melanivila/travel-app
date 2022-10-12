@@ -13,7 +13,7 @@ export const ProfileScreen = () => {
     <>
       <ImgBackground uri={ uri }>
         <View style={{ justifyContent: 'center', alignItems: 'center', top: 90 }}>
-            <ProfileCard email={ 'juanito@juanito.com' } username={ 'Juanito' }/>
+            <ProfileCard email={ 'juanito@juanito.com' } username />
         </View>
       </ImgBackground>
     </>
