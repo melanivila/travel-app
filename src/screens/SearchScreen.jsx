@@ -10,11 +10,9 @@ import {
 // import { CommonBtn } from "../components/CommonBtn";
 import { SearchBar } from "../components/SearchBar";
 import { styles } from "../theme/styles";
-import { screenWidth, SIZES } from "../theme/theme";
 import travelApi from "../api/travelApi";
 import { useNavigation } from "@react-navigation/native";
-// import axios from "axios";
-// import { useDebounceValue } from "../hooks/useDebounceValue";
+import { SearchCard } from "../components/SearchCard";
 
 export const SearchScreen = () => {
   const navigation = useNavigation();
@@ -24,10 +22,6 @@ export const SearchScreen = () => {
 
   useEffect(() => {
     loadResults();
-    // console.log(selectedOption, term);
-    // console.log(
-    //   `${selectedOption}.json?annotate=trigram:${term}&trigram=%3E=0.5&count=10`
-    // );
   }, [selectedOption, term]);
 
   const loadResults = async () => {
@@ -37,14 +31,12 @@ export const SearchScreen = () => {
         url = `/location.json?annotate=trigram:${term}&trigram=%3E=0.5&count=10&fields=all`;
       }
       if (selectedOption === "poi") {
-        url = `/poi.json?annotate=trigram:${term}&trigram=%3E=0.5&count=5&fields=all`;
+        url = `/poi.json?annotate=trigram:${term}&trigram=%3E=0.5&count=8&fields=all`;
       }
       const res = await travelApi.get(url);
       const fetchedData = res.data.results;
-      // console.log(url, selectedOption);
 
       setSearchResults(fetchedData);
-      // console.log(fetchedData[0].images[0].sizes.original.url);
     } catch (error) {
       console.log(error);
     }
@@ -56,155 +48,27 @@ export const SearchScreen = () => {
         onDebounce={(value) => setTerm(value)}
         onValueChange={(value) => setSelectedOption(value)}
       />
-      <ScrollView>
-        {/* {searchResults && ( */}
-        {/* <FlatList
+
+      <View>
+        <FlatList
           showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item, index }) => {
-            // console.log(index + "has" + item.images[0].source_url);
-            // console.log(item.images[0]);
-            // console.log(item.images);
-
-            return (
-              <View
-                style={{
-                  flexDirection: "row",
-                  backgroundColor: "white",
-                  borderRadius: SIZES.radius,
-                  width: screenWidth - 40,
-                  top: 70,
-                  marginVertical: 10,
-                  margin: 10,
-                }}
-                key={item.id}
-              >
-                {item.images[0].source_url == !"undefined" ? (
-                  <Image
-                    source={{
-                      uri: item.images[0].source_url,
-
-                      // images.length > 2
-                      //   ? images[0].sizes.medium.url
-                      //   : images[0].sizes.medium.url,
-                    }}
-                    style={{
-                      width: 120,
-                      height: 100,
-                      borderRadius: SIZES.radius,
-                    }}
-                    resizeMode="cover"
-                  />
-                ) : (
-                  <Image
-                    source={{
-                      uri: "https://www.quicideportes.com/assets/images/custom/no-image.png",
-                      // images.length > 2
-                      //   ? images[0].sizes.medium.url
-                      //   : images[0].sizes.medium.url,
-                    }}
-                    style={{
-                      width: 120,
-                      height: 100,
-                      borderRadius: SIZES.radius,
-                    }}
-                    resizeMode="cover"
-                  />
-                )}
-                <View
-                  style={{
-                    flexDirection: "column",
-                    width: screenWidth - 170,
-                  }}
-                >
-                  <Text onPress={() => console.log(item.images[0].source_url)}>
-                    {item.name}
-                  </Text>
-                  <Text>{item.snippet}</Text>
-                </View>
-              </View>
-            );
-          }}
+          keyExtractor={(item) => item.id}
           data={searchResults}
-        />
-      )} */}
-        {searchResults?.map((item) => {
-          return (
+          renderItem={({ item }) => (
             <TouchableOpacity
+              activeOpacity={0.7}
               onPress={() =>
-                navigation.navigate("Details", { location: item.id })
+                navigation.replace("Details", {
+                  location: item.id,
+                  jsonParam: selectedOption,
+                })
               }
             >
-              <View
-                style={{
-                  flexDirection: "row",
-                  backgroundColor: "white",
-                  borderRadius: SIZES.radius,
-                  width: screenWidth - 40,
-                  top: 70,
-                  marginVertical: 10,
-                  margin: 10,
-                }}
-                key={item.id}
-              >
-                {item.images.length === 0 ? (
-                  <Image
-                    source={{
-                      uri: "https://www.quicideportes.com/assets/images/custom/no-image.png",
-                      // images.length > 2
-                      //   ? images[0].sizes.medium.url
-                      //   : images[0].sizes.medium.url,
-                    }}
-                    style={{
-                      width: 120,
-                      height: 100,
-                      borderRadius: SIZES.radius,
-                    }}
-                    resizeMode="cover"
-                  />
-                ) : (
-                  <Image
-                    source={{
-                      uri:
-                        item.images.length === 1
-                          ? item.images[0].source_url
-                          : item.images.length > 2
-                          ? item.images[0].sizes.medium.url
-                          : null,
-
-                      // images.length > 2
-                      //   ? images[0].sizes.medium.url
-                      //   : images[0].sizes.medium.url,
-                    }}
-                    style={{
-                      width: 120,
-                      height: 100,
-                      borderRadius: SIZES.radius,
-                    }}
-                    resizeMode="cover"
-                  />
-                )}
-                <View
-                  style={{
-                    flexDirection: "column",
-                    width: screenWidth - 170,
-                  }}
-                >
-                  <Text
-                  //  onPress={() => console.log(item.images[0].source_url)}
-                  >
-                    {item.name}
-                  </Text>
-                  <Text>{item.snippet}</Text>
-                </View>
-              </View>
+              <SearchCard item={item} />
             </TouchableOpacity>
-          );
-        })}
-      </ScrollView>
-      {/* <View style={{ bottom: 80 }}>
-        <CommonBtn title="Search" />
-      </View> */}
+          )}
+        />
+      </View>
     </View>
   );
 };

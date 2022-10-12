@@ -38,7 +38,7 @@ export const LoginScreen = ({ route, navigation }) => {
           <View>
             <CommonBtn
               title="Log In"
-              onPress={() => navigation.navigate("Logged")}
+              onPress={() => navigation.navigate("LoggedHome")}
             />
           </View>
         </View>

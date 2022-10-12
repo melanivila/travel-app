@@ -12,29 +12,7 @@ export const ProfileCard = ({ username, email }) => {
   const navigation = useNavigation();
 
   return (
-    <View
-<<<<<<< HEAD
-      style={{
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: COLORS.lightGray,
-        height: screenHeight * 0.48,
-        width: screenWidth - 80,
-        borderRadius: SIZES.radius,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 20,
-        },
-        shadowOpacity: 0.9,
-        shadowRadius: 7.49,
-        elevation: 10,
-      }}
-=======
-        style={ styles.profileCard }
->>>>>>> c1d4dbd340d2b775c38d9010c473d63289f980ae
-    >
+    <View style={styles.profileCard}>
       <View style={{ flexDirection: "row" }}>
         <View style={{ alignItems: "center", flexDirection: "row" }}>
           <Text style={styles.profileText}>Username:</Text>
@@ -51,16 +29,11 @@ export const ProfileCard = ({ username, email }) => {
         </View>
       </View>
 
-            <View>
-                {
-                    modalVisible
-                    && <UserModal
-                            setModalVisible= { setModalVisible }
-                            modalVisible
-                            username
-                        />
-                }            
-            </View>
+      <View>
+        {modalVisible && (
+          <UserModal setModalVisible={setModalVisible} modalVisible username />
+        )}
+      </View>
 
       <View style={{ top: 20, flexDirection: "row", alignItems: "center" }}>
         <Text style={styles.profileText}>Email:</Text>

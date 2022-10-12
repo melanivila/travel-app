@@ -26,7 +26,7 @@ export const CommonFlatList = ({ title, item, typePOI }) => {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate("Details", {
+              navigation.replace("Details", {
                 location: item.id,
                 jsonParam: jsonParam,
               })

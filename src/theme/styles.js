@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   },
   commonContainer: {
     flex: 1,
-    marginTop: 30,
+    // marginTop: 30,
     marginLeft: 30,
     marginBottom: 100,
   },
@@ -34,6 +34,7 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.body3,
     fontWeight: "bold",
   },
+
   //Home Styles
   homeContainer: {
     flex: 1,
@@ -50,6 +51,7 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 15,
   },
+
   // SingIn and Login Styles
   inputsContainer: {
     flex: 1,
@@ -68,7 +70,8 @@ export const styles = StyleSheet.create({
 
   //SearchScreen
   searchBarContainer: {
-    marginVertical: 15,
+    top: 20,
+    zIndex: 999,
     // position: "absolute",
     width: screenWidth - 30,
     marginHorizontal: 20,
@@ -90,19 +93,43 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
     elevation: 6,
-    top: 35,
+    top: 25,
   },
   searchInput: {
     flex: 1,
     fontSize: SIZES.body3,
   },
 
+  //SearchCard
+  searchCardContainer: {
+    flexDirection: "row",
+    backgroundColor: COLORS.white,
+    borderWidth: 1,
+    borderColor: COLORS.lightblue,
+    borderRadius: SIZES.radius,
+    width: screenWidth - 40,
+    height: 110,
+    top: 70,
+    marginVertical: 10,
+    margin: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+    elevation: 6,
+  },
+
   //HomeLoggedScreen
   loggedScreenHeader: {
     backgroundColor: "white",
-    top: 30,
+    width: screenWidth,
+    height: 60,
+    paddingHorizontal: 20,
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "center",
     shadowColor: "#000",
     zIndex: 999,
@@ -121,8 +148,8 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   profileCard: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: COLORS.lightGray,
     height: screenHeight * 0.48,
     width: screenWidth - 80,
@@ -130,12 +157,12 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
-        width: 0,
-        height: 20,
+      width: 0,
+      height: 20,
     },
-        shadowOpacity: 0.9,
-        shadowRadius: 7.49,
-        elevation: 10,
+    shadowOpacity: 0.9,
+    shadowRadius: 7.49,
+    elevation: 10,
   },
   deleteAccountBtn: {
     fontSize: 16,
@@ -164,8 +191,8 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
-    width: 0,
-    height: 3,
+      width: 0,
+      height: 3,
     },
     shadowOpacity: 1,
     shadowRadius: 4.65,
@@ -175,7 +202,7 @@ export const styles = StyleSheet.create({
   //DetailsScreen
   detailsContainer: {
     flex: 1,
-    top: 60,
+    top: 30,
     alignItems: "center",
     marginHorizontal: 40,
     marginBottom: 100,
@@ -204,6 +231,21 @@ export const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginTop: 8,
     marginBottom: 8,
+  },
+
+  //POI Details
+  tagLabel: {
+    backgroundColor: COLORS.lightblue,
+    padding: 6,
+    borderRadius: SIZES.radius,
+    margin: 5,
+    marginTop: 20,
+  },
+  poiData: {
+    width: screenWidth - 80,
+    flexDirection: "row",
+    marginVertical: 8,
+    alignContent: "center",
   },
 
   //Carousel
