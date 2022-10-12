@@ -12,7 +12,13 @@ export const ProfileCard = ({ username, email }) => {
   const navigation = useNavigation();
 
   return (
+<<<<<<< HEAD
     <View style={styles.profileCard}>
+=======
+    <View
+        style={ styles.profileCard }
+    >
+>>>>>>> 926caddd342025b1a9a82499e6096155e05f49db
       <View style={{ flexDirection: "row" }}>
         <View style={{ alignItems: "center", flexDirection: "row" }}>
           <Text style={styles.profileText}>Username:</Text>
