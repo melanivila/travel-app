@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     marginBottom: 100,
   },
   commonBtn: {
-    backgroundColor: COLORS.lightblue,
+    backgroundColor: COLORS.bluesky,
     width: 220,
     height: 50,
     borderRadius: SIZES.radius,
@@ -122,8 +122,8 @@ export const styles = StyleSheet.create({
   },
   deleteAccountBtn: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: 'red',
+    fontWeight: "bold",
+    color: "red",
     marginHorizontal: 10,
   },
   modalBackground: {
@@ -168,7 +168,7 @@ export const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: SIZES.body2,
-    color: COLORS.lightblue,
+    color: COLORS.bluesky,
     fontWeight: "bold",
     alignSelf: "flex-start",
     marginTop: 8,
@@ -188,17 +188,17 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 1,
     shadowRadius: 4.65,
-    elevation: 6,                        
+    elevation: 6,
   },
   saveBtn: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: COLORS.lightblue,
+    fontWeight: "bold",
+    color: COLORS.bluesky,
     marginHorizontal: 10,
   },
   modalText: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 30,
     shadowOpacity: 0.9,
     shadowRadius: 7.49,

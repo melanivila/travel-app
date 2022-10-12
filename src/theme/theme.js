@@ -4,7 +4,8 @@ export const { width: screenWidth, height: screenHeight } =
 
 export const COLORS = {
   errorMsg: "#FC0C0C",
-  lightblue: "#08B9C5",
+  bluesky: "#08B9C5",
+  lightblue: "#7bd5db",
 
   white: "#fff",
 
