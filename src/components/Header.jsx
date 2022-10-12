@@ -9,7 +9,7 @@ export const Header = ({ icon, title, subTitle, opacity, render }) => {
   const navigation = useNavigation();
 
   return (
-    <View style={{...styles.loguedScreenHeader, opacity: opacity}}>
+    <View style={{...styles.loggedScreenHeader, opacity: opacity}}>
       {
         render
         ? 
