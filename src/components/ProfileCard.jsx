@@ -13,6 +13,7 @@ export const ProfileCard = ({ username, email }) => {
 
   return (
     <View
+<<<<<<< HEAD
       style={{
         justifyContent: "center",
         alignItems: "center",
@@ -30,6 +31,9 @@ export const ProfileCard = ({ username, email }) => {
         shadowRadius: 7.49,
         elevation: 10,
       }}
+=======
+        style={ styles.profileCard }
+>>>>>>> c1d4dbd340d2b775c38d9010c473d63289f980ae
     >
       <View style={{ flexDirection: "row" }}>
         <View style={{ alignItems: "center", flexDirection: "row" }}>
@@ -47,11 +51,15 @@ export const ProfileCard = ({ username, email }) => {
         </View>
       </View>
 
-      <View>
-        {modalVisible && (
-          <UserModal setModalVisible={setModalVisible} modalVisible />
-        )}
-      </View>
+            <View>
+                {
+                    modalVisible && <UserModal
+                                        setModalVisible= { setModalVisible }
+                                        modalVisible
+                                        username
+                                    />
+                }            
+            </View>
 
       <View style={{ top: 20, flexDirection: "row", alignItems: "center" }}>
         <Text style={styles.profileText}>Email:</Text>

@@ -4,9 +4,9 @@ import { styles } from '../theme/styles';
 import { TextInput } from 'react-native-gesture-handler';
 import { COLORS } from '../theme/theme';
 
-export const UserModal = ({ modalVisible, setModalVisible }) => {
+export const UserModal = ({ modalVisible, setModalVisible, username }) => {
 
-    const [ text, setText ] = useState("");
+    const [ text, setText ] = useState();
 
   return (
     <View style={{ marginTop: 22 }}>
@@ -22,21 +22,7 @@ export const UserModal = ({ modalVisible, setModalVisible }) => {
                         <View>
                             <Text style={ styles.modalText }>Change username:</Text>
                             <TextInput
-                                style={{
-                                    backgroundColor: COLORS.transparentWhite,
-                                    borderRadius: 50,
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    shadowColor: "#000",
-                                    shadowOffset: {
-                                    width: 0,
-                                    height: 3,
-                                    },
-                                    shadowOpacity: 1,
-                                    shadowRadius: 4.65,
-                                    elevation: 11,                        
-                                }}
-                                onChangeText={ console.log( text ) }
+                                style={ styles.modalInput }
                                 value={ text }
                             />
 
@@ -51,7 +37,8 @@ export const UserModal = ({ modalVisible, setModalVisible }) => {
                                 <TouchableOpacity
                                     onPress={() => {
                                         setModalVisible( false )
-                                        setText( username => [ text, ...username ] )
+                                        setText( text => [ text, ...username ] )
+                                        console.log(username)
                                     }}>
                                         <Text style={ styles.saveBtn }>Save</Text>
                                 </TouchableOpacity>

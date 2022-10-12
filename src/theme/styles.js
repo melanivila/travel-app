@@ -120,6 +120,23 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
+  profileCard: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: COLORS.lightGray,
+    height: screenHeight * 0.48,
+    width: screenWidth - 80,
+    borderRadius: SIZES.radius,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+        width: 0,
+        height: 20,
+    },
+        shadowOpacity: 0.9,
+        shadowRadius: 7.49,
+        elevation: 10,
+  },
   deleteAccountBtn: {
     fontSize: 16,
     fontWeight: "bold",
@@ -139,6 +156,20 @@ export const styles = StyleSheet.create({
     borderRadius: SIZES.radius,
     fontWeight: "bold",
     color: "red",
+  },
+  modalInput: {
+    backgroundColor: COLORS.transparentWhite,
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+    width: 0,
+    height: 3,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 4.65,
+    elevation: 11,
   },
 
   //DetailsScreen
