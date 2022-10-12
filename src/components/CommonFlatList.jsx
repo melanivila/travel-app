@@ -2,7 +2,6 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../theme/styles";
-import { COLORS } from "../theme/theme";
 import { CommonCard } from "./CommonCard";
 
 export const CommonFlatList = ({ title, item }) => {

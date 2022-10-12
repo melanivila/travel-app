@@ -14,7 +14,10 @@ export const Header = ({ icon, title, subTitle, opacity, render }) => {
         render
         ? 
         <TouchableOpacity>
-            {<Ionicons name="chevron-back-outline" size={35} color="black" onPress={ () => navigation.goBack() }/>}
+            {<Ionicons  name="chevron-back-outline"
+                        size={35}
+                        color="black"
+                        onPress={ () => navigation.goBack() }/>}
           </TouchableOpacity>
         : 
         <Image

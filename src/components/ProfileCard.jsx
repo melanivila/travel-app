@@ -31,11 +31,12 @@ export const ProfileCard = ({ username, email }) => {
 
             <View>
                 {
-                    modalVisible && <UserModal
-                                        setModalVisible= { setModalVisible }
-                                        modalVisible
-                                        username
-                                    />
+                    modalVisible
+                    && <UserModal
+                            setModalVisible= { setModalVisible }
+                            modalVisible
+                            username
+                        />
                 }            
             </View>
 
@@ -43,9 +44,11 @@ export const ProfileCard = ({ username, email }) => {
             <Text style={ styles.profileText }>Email:</Text>
             <Text style={{ marginHorizontal: 10, fontSize: 15 }}>{ email }</Text>
         </View>
+
         <TouchableOpacity style= {{ top: 80 }}>
             {<Ionicons name= 'heart-outline' size={35} color={ COLORS.lightblue } onPress={ () => navigation.navigate('Fav') }/>}
         </TouchableOpacity>
+
         <View style={{ top: 120 }}>
             <TouchableOpacity>
                 <Text style={ styles.deleteAccountBtn }>Delete Account</Text>
