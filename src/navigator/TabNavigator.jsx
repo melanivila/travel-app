@@ -6,7 +6,7 @@ import {
   SearchScreen,
   DetailsScreen,
   LoginScreen,
-  LoguedScreen,
+  LoggedScreen,
   ProfileScreen,
 } from "../screens";
 
@@ -53,7 +53,7 @@ export default function TabNavigator() {
         },
       })}
     >
-      <Tab.Screen name="Home" component={LoguedScreen} />
+      <Tab.Screen name="Home" component={LoggedScreen} />
       <Tab.Screen name="Search" component={SearchScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
       {/* <Tab.Screen name="Profile" component={DetailsScreen} /> */}

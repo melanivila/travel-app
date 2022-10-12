@@ -3,7 +3,6 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../theme/styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
-import { FavScreen } from "../screens/FavScreen";
 
 export const Header = ({ icon, title, subTitle, opacity, render }) => {
 
@@ -31,7 +30,14 @@ export const Header = ({ icon, title, subTitle, opacity, render }) => {
           </Text>
         </View>
       <TouchableOpacity>
-        {<Ionicons name={icon} size={35} color="black" onPress={ () => navigation.navigate('Fav') }/>}
+        {
+          <Ionicons
+            name={icon}
+            size={35}
+            color="black"
+            onPress={() => navigation.navigate("Fav")}
+          />
+        }
       </TouchableOpacity>
     </View>
   );
