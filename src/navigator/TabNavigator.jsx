@@ -4,8 +4,6 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { COLORS, SIZES } from "../theme/theme";
 import {
   SearchScreen,
-  DetailsScreen,
-  LoginScreen,
   LoggedScreen,
   ProfileScreen,
 } from "../screens";
