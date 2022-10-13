@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, TouchableOpacity, View } from "react-native";
+import { FlatList, Keyboard, TouchableOpacity, View } from "react-native";
 import { Header, SearchBar, SearchCard } from "../components";
 import { styles } from "../theme/styles";
 import travelApi from "../api/travelApi";
 import { useNavigation } from "@react-navigation/native";
+import { screenWidth } from "../theme/theme";
 
 export const SearchScreen = () => {
   const navigation = useNavigation();
@@ -40,12 +41,12 @@ export const SearchScreen = () => {
         subTitle="what you're looking for"
         icon="heart-outline"
       />
-      <View style={styles.basicContainer}>
+      <View style={styles.basicContainer} onPress={Keyboard.dismiss()}>
         <SearchBar
           onDebounce={(value) => setTerm(value)}
           onValueChange={(value) => setSelectedOption(value)}
         />
-        <View>
+        <View style={{ marginVertical: 30 }}>
           <FlatList
             showsVerticalScrollIndicator={false}
             keyExtractor={(item) => item.id}

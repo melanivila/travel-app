@@ -109,7 +109,6 @@ export const styles = StyleSheet.create({
     borderRadius: SIZES.radius,
     width: screenWidth - 40,
     height: 110,
-    top: 70,
     marginVertical: 10,
     margin: 10,
     shadowColor: "#000",
