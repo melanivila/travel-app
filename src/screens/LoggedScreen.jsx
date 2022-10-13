@@ -16,7 +16,7 @@ export const LoggedScreen = () => {
 
   return (
     <>
-      <Header title="Travel On" icon="heart-outline" />
+      <Header title="Home" icon="heart-outline" />
       <ScrollView>
         <View style={styles.commonContainer}>
           <CommonFlatList title="Popular Cities" item={popularCities} />

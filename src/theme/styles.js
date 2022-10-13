@@ -55,7 +55,7 @@ export const styles = StyleSheet.create({
   // SingIn and Login Styles
   inputsContainer: {
     flex: 1,
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     alignItems: "center",
     marginVertical: 10,
     marginHorizontal: 70,
@@ -70,7 +70,7 @@ export const styles = StyleSheet.create({
 
   //SearchScreen
   searchBarContainer: {
-    top: 20,
+    // top: 20,
     zIndex: 999,
     // position: "absolute",
     width: screenWidth - 30,
@@ -219,7 +219,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   carouselTitle: {
-    fontSize: SIZES.h1,
     color: COLORS.white,
     textTransform: "uppercase",
     fontWeight: "bold",

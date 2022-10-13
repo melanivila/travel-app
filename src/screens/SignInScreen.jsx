@@ -23,9 +23,6 @@ export const SingInScreen = ({ route }) => {
           color="white"
         />
         <View style={styles.inputsContainer}>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.title}>TravelOn</Text>
-          </View>
           <View>
             <Input text="Email:" value={email} />
             <Input text="Password:" value={password} />

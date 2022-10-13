@@ -13,7 +13,7 @@ export const POIDetails = ({ placeDetails }) => {
         horizontal
         data={placeDetails.tag_labels?.slice(0, 4)}
         renderItem={({ item }) => (
-          <View style={styles.tagLabel}>
+          <View style={styles.tagLabel} key={item.id}>
             <Text>{item}</Text>
           </View>
         )}
@@ -22,7 +22,9 @@ export const POIDetails = ({ placeDetails }) => {
       <Text style={{ alignSelf: "flex-start" }}>
         {placeDetails.generated_intro}
       </Text>
-      <Text style={styles.subtitle}>More information</Text>
+      {placeDetails.properties?.length > 0 && (
+        <Text style={styles.subtitle}>More information</Text>
+      )}
       {placeDetails?.properties?.map(
         (item) =>
           (item.key === "phone" ||

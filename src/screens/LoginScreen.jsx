@@ -24,24 +24,25 @@ export const LoginScreen = ({ route, navigation }) => {
           size={45}
           color="white"
         />
-        <View style={styles.inputsContainer}>
-          <Text style={styles.title}>TravelOn</Text>
-          <View>
-            <Input text="Email:" value={email} />
-            <Input text="Password:" value={password} />
+        <View style={styles.basicContainer}>
+          <View style={styles.inputsContainer}>
+            <View>
+              <Input text="Email:" value={email} />
+              <Input text="Password:" value={password} />
+            </View>
+            <View>
+              <Text style={{ color: "red", marginBottom: 10 }}>
+                Validations here
+              </Text>
+            </View>
           </View>
-          <View>
-            <Text style={{ color: "red", marginBottom: 10 }}>
-              Validations here
-            </Text>
-          </View>
-          <View>
-            <CommonBtn
-              title="Log In"
-              onPress={() => navigation.navigate("LoggedHome")}
-            />
-          </View>
+          {/* <View style={styles.basicContainer}> */}
+          <CommonBtn
+            title="Log In"
+            onPress={() => navigation.navigate("LoggedHome")}
+          />
         </View>
+        {/* </View> */}
       </ImgBackground>
     </>
   );

@@ -3,6 +3,7 @@ import { ScrollView, StatusBar, Text, View } from "react-native";
 import { Header, Carousel, POIDetails, LocationDetails } from "../components";
 import { styles } from "../theme/styles";
 import { useFetchDetails } from "../hooks/useFetchDetails";
+import { SIZES } from "../theme/theme";
 
 export const DetailsScreen = ({ route }) => {
   const { jsonParam, location } = route.params;
@@ -26,9 +27,15 @@ export const DetailsScreen = ({ route }) => {
         <View style={styles.detailsContainer}>
           <Carousel carouselImages={carouselImages}>
             <View style={styles.carouselContainer}>
-              <Text style={styles.carouselTitle}>
-                {placeDetails.name?.length > 13
-                  ? `${placeDetails.name.slice(0, 13)}...`
+              <Text
+                style={{
+                  ...styles.carouselTitle,
+                  fontSize:
+                    placeDetails.name?.length > 15 ? SIZES.body3 : SIZES.h1,
+                }}
+              >
+                {placeDetails.name?.length > 30
+                  ? `${placeDetails.name.slice(0, 30)}...`
                   : placeDetails.name}
               </Text>
             </View>

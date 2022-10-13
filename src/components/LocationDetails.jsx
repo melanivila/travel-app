@@ -6,7 +6,7 @@ import { CommonFlatList } from "./CommonFlatList";
 export const LocationDetails = ({ placesToVisit, placeDetails }) => {
   return (
     <>
-      <Text style={styles.subtitle}>Overview</Text>
+      <Text style={{ ...styles.subtitle, marginTop: 20 }}>Overview</Text>
       <Text style={{ alignSelf: "flex-start" }}>
         {placeDetails.generated_intro}
       </Text>
