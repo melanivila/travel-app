@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import travelApi from "../api/travelApi";
 
 export const useFetchDetails = ({ location, jsonParam }) => {
+  const [loading, setLoading] = useState(true);
   const [placeDetails, setPlaceDetails] = useState([]);
   const [carouselImages, setCarouselImages] = useState([]);
   const [placesToVisit, setPlacesToVisit] = useState([]);
@@ -13,6 +14,7 @@ export const useFetchDetails = ({ location, jsonParam }) => {
   }, []);
 
   const getPlaceDetails = async () => {
+    setLoading((prev) => (prev = true));
     const res = await travelApi.get(
       `/${jsonParam}.json?id=${location}&fields=all`
     );
@@ -20,6 +22,7 @@ export const useFetchDetails = ({ location, jsonParam }) => {
     const fetchedCarousel = res.data.results[0].images.slice(0, 5);
     setPlaceDetails(fetchedData);
     setCarouselImages(fetchedCarousel);
+    setLoading((prev) => (prev = false));
   };
 
   const getPlacesToVisit = async () => {
@@ -29,5 +32,5 @@ export const useFetchDetails = ({ location, jsonParam }) => {
     const fetchedData = res.data.results;
     setPlacesToVisit(fetchedData);
   };
-  return [placeDetails, carouselImages, placesToVisit];
+  return [placeDetails, carouselImages, placesToVisit, loading];
 };

@@ -1,38 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FlatList, Keyboard, TouchableOpacity, View } from "react-native";
-import { Header, SearchBar, SearchCard } from "../components";
+import { Header, Loading, SearchBar, SearchCard } from "../components";
 import { styles } from "../theme/styles";
-import travelApi from "../api/travelApi";
 import { useNavigation } from "@react-navigation/native";
-import { screenWidth } from "../theme/theme";
+import { useSearchData } from "../hooks/useSearchData";
 
 export const SearchScreen = () => {
   const navigation = useNavigation();
   const [term, setTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
   const [selectedOption, setSelectedOption] = useState("location");
-
-  useEffect(() => {
-    loadResults();
-  }, [selectedOption, term]);
-
-  const loadResults = async () => {
-    try {
-      let url;
-      if (selectedOption === "location") {
-        url = `/location.json?annotate=trigram:${term}&trigram=%3E=0.5&count=10&fields=all`;
-      }
-      if (selectedOption === "poi") {
-        url = `/poi.json?annotate=trigram:${term}&trigram=%3E=0.5&count=8&fields=all`;
-      }
-      const res = await travelApi.get(url);
-      const fetchedData = res.data.results;
-
-      setSearchResults(fetchedData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { loading, searchResults } = useSearchData({ term, selectedOption });
 
   return (
     <>
@@ -46,26 +23,30 @@ export const SearchScreen = () => {
           onDebounce={(value) => setTerm(value)}
           onValueChange={(value) => setSelectedOption(value)}
         />
-        <View style={{ marginVertical: 30 }}>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(item) => item.id}
-            data={searchResults}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={() =>
-                  navigation.replace("Details", {
-                    location: item.id,
-                    jsonParam: selectedOption,
-                  })
-                }
-              >
-                <SearchCard item={item} />
-              </TouchableOpacity>
-            )}
-          />
-        </View>
+        {loading ? (
+          <Loading />
+        ) : (
+          <View style={{ marginVertical: 30 }}>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              keyExtractor={(item) => item.id}
+              data={searchResults}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() =>
+                    navigation.replace("Details", {
+                      location: item.id,
+                      jsonParam: selectedOption,
+                    })
+                  }
+                >
+                  <SearchCard item={item} />
+                </TouchableOpacity>
+              )}
+            />
+          </View>
+        )}
       </View>
     </>
   );
