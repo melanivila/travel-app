@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
         payload: { token: data.token, user: data.usuario },
       });
       await AsyncStorage.setItem("token", data.token);
-    } catch (error: any) {
+    } catch (error) {
       // console.log(error)
       // console.log(error.response.data.msg)
       dispatch({
@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
       });
       await AsyncStorage.setItem("token", data.token);
       // console.log(data.usuario)
-    } catch (error: any) {
+    } catch (error) {
       // console.log(error)
       // console.log(error.response.data.msg)
       dispatch({
