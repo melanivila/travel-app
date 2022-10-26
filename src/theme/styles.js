@@ -343,7 +343,8 @@ export const styles = StyleSheet.create({
   },
   // Validations
   validationText: {
-    color: 'red',
+    color: '#D2001A',
     fontWeight: 'bold',
+    fontSize: 14.5
   }
 });
