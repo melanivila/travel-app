@@ -341,4 +341,10 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     alignSelf: "flex-start",
   },
+  // Validations
+  validationText: {
+    color: '#D2001A',
+    fontWeight: 'bold',
+    fontSize: 14.5
+  }
 });
