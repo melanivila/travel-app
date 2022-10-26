@@ -8,10 +8,10 @@ import { ImgBackground } from "../components/ImgBackground";
 import { EyeIcon } from "../components/EyeIcon";
 import { Formik } from "formik";
 import { SignupSchema } from "../validations/SignupSchema";
-// import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
-export const LoginScreen = ({ route, navigation }) => {
-  // const navigation = useNavigation();
+export const LoginScreen = ({ route }) => {
+  const navigation = useNavigation();
 
   // const [email, setEmail] = useState();
   // const [password, setPassword] = useState();
@@ -66,7 +66,7 @@ export const LoginScreen = ({ route, navigation }) => {
               </View>
               <CommonBtn
                 title="Log In"
-                onPress={handleSubmit}
+                onPress={() => navigation.navigate("LoggedHome")}
               />
             </View>
 
