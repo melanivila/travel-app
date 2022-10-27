@@ -12,7 +12,6 @@ export const usePopularLocation = () => {
   });
 
   useEffect(() => {
-    // const newRandomLocation = Math.floor(Math.random() * 10);
     setIsLoading(true);
     getLocation();
     setIsLoading(false);
