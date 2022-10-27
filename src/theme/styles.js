@@ -145,10 +145,12 @@ export const styles = StyleSheet.create({
   profileText: {
     fontSize: 18,
     fontWeight: "bold",
+    marginRight: 5,
   },
   profileCard: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "space-around",
+    alignItems: "flex-start",
+    paddingHorizontal: 10,
     backgroundColor: COLORS.lightGray,
     height: screenHeight * 0.48,
     width: screenWidth - 80,
@@ -343,8 +345,8 @@ export const styles = StyleSheet.create({
   },
   // Validations
   validationText: {
-    color: '#D2001A',
-    fontWeight: 'bold',
-    fontSize: 14.5
-  }
+    color: "#D2001A",
+    fontWeight: "bold",
+    fontSize: 14.5,
+  },
 });

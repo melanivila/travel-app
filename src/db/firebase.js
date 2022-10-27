@@ -1,5 +1,13 @@
 import { initializeApp } from "firebase/app";
-// import {API_KEY,AUTH_DOMAIN,PROJECT_ID,STORAGE_BUCKET,MESSAGING_SENDER_ID,APP_ID } from '@env';
+import { getAuth } from "firebase/auth";
+import {
+  API_KEY,
+  AUTH_DOMAIN,
+  PROJECT_ID,
+  STORAGE_BUCKET,
+  MESSAGING_SENDER_ID,
+  APP_ID,
+} from "@env";
 
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
@@ -10,4 +18,6 @@ const firebaseConfig = {
   appId: process.env.APP_ID,
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
+
+export const auth = getAuth();

@@ -1,5 +1,6 @@
 export { DetailsScreen } from "./DetailsScreen";
 export { FavScreen } from "./FavScreen";
+export { ForgotPasswordScreen } from "./ForgotPasswordScreen";
 export { HomeScreen } from "./HomeScreen";
 export { LoggedScreen } from "./LoggedScreen";
 export { LoginScreen } from "./LoginScreen";
