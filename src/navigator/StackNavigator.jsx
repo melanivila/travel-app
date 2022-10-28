@@ -20,7 +20,6 @@ export const StackNavigator = () => {
   const getUserFromAsyncStorage = async () => {
     try {
       const userEmail = await AsyncStorage.getItem("email");
-      console.log(userEmail);
       return userEmail !== null
         ? setUser((prev) => ({ ...prev, email: userEmail }))
         : null;

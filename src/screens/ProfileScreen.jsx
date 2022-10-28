@@ -8,7 +8,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { auth } from "../db/firebase";
 import { screenWidth } from "../theme/theme";
 
-export const ProfileScreen = ({ navigation }) => {
+export const ProfileScreen = () => {
   const { user, setUser } = useContext(UserContext);
 
   const logOut = () => {

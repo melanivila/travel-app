@@ -45,6 +45,7 @@ export const LoginScreen = ({ route, navigation }) => {
     <>
       <ImgBackground uri={uri}>
         <BackIcon name="arrow-back-outline" size={45} color="white" />
+
         <Formik
           initialValues={{ email: "", password: "" }}
           onSubmit={(values) => handleLogin(values)}
@@ -59,6 +60,7 @@ export const LoginScreen = ({ route, navigation }) => {
             touched,
           }) => (
             <View style={styles.basicContainer}>
+              <Text style={styles.title}>Login</Text>
               <View style={styles.inputsContainer}>
                 <View>
                   <Input
@@ -66,6 +68,7 @@ export const LoginScreen = ({ route, navigation }) => {
                     value={values.email}
                     onChangeText={handleChange("email")}
                     onBlur={handleBlur("email")}
+                    keyboard="email-address"
                   />
                   {errors.email && touched.email ? (
                     <Text style={styles.validationText}>{errors.email}</Text>
