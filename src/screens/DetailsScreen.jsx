@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, StatusBar, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import {
   Header,
   Carousel,
@@ -10,6 +10,7 @@ import {
 import { styles } from "../theme/styles";
 import { useFetchDetails } from "../hooks/useFetchDetails";
 import { SIZES } from "../theme/theme";
+import FavBtn from "../components/FavBtn";
 
 export const DetailsScreen = ({ route }) => {
   const { jsonParam, location } = route.params;
@@ -34,6 +35,7 @@ export const DetailsScreen = ({ route }) => {
       />
       <ScrollView>
         <View style={styles.detailsContainer}>
+          <FavBtn favItem={placeDetails} jsonParam={jsonParam} />
           <Carousel carouselImages={carouselImages}>
             <View style={styles.carouselContainer}>
               <Text

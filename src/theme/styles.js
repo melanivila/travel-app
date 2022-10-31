@@ -66,6 +66,7 @@ export const styles = StyleSheet.create({
     width: 260,
     height: 40,
     marginVertical: 10,
+    paddingHorizontal: 10,
   },
 
   //SearchScreen

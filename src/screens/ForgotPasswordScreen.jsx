@@ -32,6 +32,7 @@ export const ForgotPasswordScreen = ({ route, navigation }) => {
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
           <View style={styles.basicContainer}>
+            <Text style={styles.title}>Reset password</Text>
             <View
               style={{
                 ...styles.inputsContainer,
