@@ -7,7 +7,10 @@ import { UserModal } from "./UserModal";
 import { useNavigation } from "@react-navigation/native";
 
 export const ProfileCard = ({ username, email, logOut }) => {
+
   const [modalVisible, setModalVisible] = useState(false);
+
+  const [input, setInput] = useState(username);
 
   const navigation = useNavigation();
 
