@@ -11,7 +11,7 @@ export const FavScreen = ({ navigation }) => {
     <>
       <Header title={"Travel On"} subTitle={"Favorites"} render />
       <View style={{ ...styles.basicContainer, marginVertical: 30 }}>
-        {favList?.length !== 0 && (
+        {favList && (
           <FlatList
             showsVerticalScrollIndicator={false}
             // keyExtractor={(item) => item.id}
