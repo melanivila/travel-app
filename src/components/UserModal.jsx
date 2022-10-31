@@ -22,7 +22,7 @@ export const UserModal = ({ modalVisible, setModalVisible, username }) => {
           <View style={styles.modalBackground}>
             <View>
               <Text style={styles.modalText}>Change username:</Text>
-              <TextInput style={styles.modalInput} value={text} />
+              <TextInput style={styles.modalInput} value={ text } onChangeText={ text => setText(text) }/>
 
               <View
                 style={{
@@ -42,7 +42,7 @@ export const UserModal = ({ modalVisible, setModalVisible, username }) => {
                 <TouchableOpacity
                   onPress={() => {
                     setModalVisible(false);
-                    setText((text) => [text, ...username]);
+                    setText((text) => username = text);
                     console.log(username);
                   }}
                 >
