@@ -5,7 +5,7 @@ import { UserContext } from "../context/UserContext";
 
 export const useFirestore = () => {
   const { user } = useContext(UserContext);
-
+  const [isFavItem, setIsFavItem] = useState(false);
   const [favList, setFavList] = useState([]);
 
   const getOrCreateFavList = async () => {
@@ -23,6 +23,16 @@ export const useFirestore = () => {
     }
   };
 
+  const checkFavExists = async (item) => {
+    const { id } = item;
+    const isFavAlready = favList.find((fav) => fav.id === id);
+    if (isFavAlready) {
+      setIsFavItem((prev) => (prev = true));
+    } else {
+      setIsFavItem((prev) => (prev = false));
+    }
+  };
+
   const addFavItem = async (item, jsonParam) => {
     const { name, id, images, snippet } = item;
     const favItemData = {
@@ -32,10 +42,16 @@ export const useFirestore = () => {
       snippet,
       jsonParam,
     };
-    favList.push(favItemData);
-    const docRef = doc(firestore, `users/${user.email}`);
-    updateDoc(docRef, { favorites: [...favList] });
-    setFavList((prev) => (prev = favList));
+    if (isFavItem) {
+      deleteFav(name);
+      setIsFavItem((prev) => (prev = false));
+    } else {
+      favList.push(favItemData);
+      const docRef = doc(firestore, `users/${user.email}`);
+      updateDoc(docRef, { favorites: [...favList] });
+      setFavList((prev) => (prev = favList));
+      setIsFavItem((prev) => (prev = true));
+    }
   };
 
   const deleteFav = async (name) => {
@@ -50,7 +66,9 @@ export const useFirestore = () => {
   }, [favList]);
 
   return {
+    isFavItem,
     favList,
+    checkFavExists,
     getOrCreateFavList,
     addFavItem,
     deleteFav,

@@ -11,7 +11,7 @@ export const FavScreen = ({ navigation }) => {
     <>
       <Header title={"Travel On"} subTitle={"Favorites"} render />
       <View style={{ ...styles.basicContainer, marginVertical: 30 }}>
-        {favList && (
+        {favList.length !== 0 ? (
           <FlatList
             showsVerticalScrollIndicator={false}
             // keyExtractor={(item) => item.id}
@@ -30,6 +30,10 @@ export const FavScreen = ({ navigation }) => {
               </TouchableOpacity>
             )}
           />
+        ) : (
+          <Text style={{ fontWeight: "bold" }}>
+            You don't have any items on your list...
+          </Text>
         )}
       </View>
     </>
