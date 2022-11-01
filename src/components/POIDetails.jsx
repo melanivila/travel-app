@@ -9,9 +9,9 @@ export const POIDetails = ({ placeDetails }) => {
     <>
       <FlatList
         showsHorizontalScrollIndicator={false}
+        data={placeDetails.tag_labels?.slice(0, 4)}
         keyExtractor={(item) => item.id}
         horizontal
-        data={placeDetails.tag_labels?.slice(0, 4)}
         renderItem={({ item }) => (
           <View style={styles.tagLabel} key={item.id}>
             <Text>{item}</Text>
