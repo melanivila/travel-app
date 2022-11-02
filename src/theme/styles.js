@@ -350,4 +350,11 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 14.5,
   },
+  // Forms Screens
+  formContainer: {
+    flex: 1,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
 });

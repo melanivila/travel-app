@@ -62,75 +62,75 @@ export const SingInScreen = ({ route }) => {
     <>
       <ImgBackground uri={uri}>
         <BackIcon name="arrow-back-outline" size={45} color="white" />
-        <Formik
-          initialValues={{ email: "", password: "", confirmPassword: "" }}
-          onSubmit={(values) => handleRegister(values)}
-          validationSchema={SignInSchema}
-        >
-          {({
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            values,
-            errors,
-            touched,
-          }) => (
-            <View style={styles.basicContainer}>
-              <Text style={styles.title}>Sign In</Text>
-              <View style={styles.inputsContainer}>
-                <View>
-                  <Input
-                    text="Email:"
-                    value={values.email}
-                    onChangeText={handleChange("email")}
-                    onBlur={handleBlur("email")}
-                    keyboard="email-address"
-                  />
-                  {errors.email && touched.email ? (
-                    <Text style={styles.validationText}>{errors.email}</Text>
-                  ) : null}
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Formik
+            initialValues={{ email: "", password: "", confirmPassword: "" }}
+            onSubmit={(values) => handleRegister(values)}
+            validationSchema={SignInSchema}
+          >
+            {({
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              values,
+              errors,
+              touched,
+            }) => (
+              <View style={styles.formContainer}>
+                <Text style={styles.title}>Sign In</Text>
+                <View style={styles.inputsContainer}>
+                  <View>
                     <Input
-                      text="Password:"
-                      value={values.password}
-                      visible={isHidden}
-                      onChangeText={handleChange("password")}
-                      onBlur={handleBlur("password")}
+                      text="Email:"
+                      value={values.email}
+                      onChangeText={handleChange("email")}
+                      onBlur={handleBlur("email")}
+                      keyboard="email-address"
                     />
-                    <TouchableOpacity
-                      onPress={() => setIsHidden(!isHidden)}
-                      style={{
-                        zIndex: 999,
-                        position: "absolute",
-                        right: 10,
-                      }}
-                    >
-                      <EyeIcon isHidden={isHidden} />
-                    </TouchableOpacity>
+                    {errors.email && touched.email ? (
+                      <Text style={styles.validationText}>{errors.email}</Text>
+                    ) : null}
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <Input
+                        text="Password:"
+                        value={values.password}
+                        visible={isHidden}
+                        onChangeText={handleChange("password")}
+                        onBlur={handleBlur("password")}
+                      />
+                      <TouchableOpacity
+                        onPress={() => setIsHidden(!isHidden)}
+                        style={{
+                          zIndex: 999,
+                          position: "absolute",
+                          right: 10,
+                        }}
+                      >
+                        <EyeIcon isHidden={isHidden} />
+                      </TouchableOpacity>
+                    </View>
+                    {errors.password && touched.password ? (
+                      <Text style={styles.validationText}>{errors.password}</Text>
+                    ) : null}
+                    <Input
+                      text="Confirm Password:"
+                      value={values.confirmPassword}
+                      visible={isHidden}
+                      onChangeText={handleChange("confirmPassword")}
+                      onBlur={handleBlur("confirmPassword")}
+                    />
+                    {errors.confirmPassword && touched.confirmPassword ? (
+                      <Text style={styles.validationText}>
+                        {errors.confirmPassword}
+                      </Text>
+                    ) : null}
                   </View>
-                  {errors.password && touched.password ? (
-                    <Text style={styles.validationText}>{errors.password}</Text>
-                  ) : null}
-                  <Input
-                    text="Confirm Password:"
-                    value={values.confirmPassword}
-                    visible={isHidden}
-                    onChangeText={handleChange("confirmPassword")}
-                    onBlur={handleBlur("confirmPassword")}
-                  />
-                  {errors.confirmPassword && touched.confirmPassword ? (
-                    <Text style={styles.validationText}>
-                      {errors.confirmPassword}
-                    </Text>
-                  ) : null}
-                </View>
-                <View>
-                  <CommonBtn title="Sign in" onPress={handleSubmit} />
+                  <View>
+                    <CommonBtn title="Sign in" onPress={handleSubmit} />
+                  </View>
                 </View>
               </View>
-            </View>
-          )}
-        </Formik>
+            )}
+          </Formik>
       </ImgBackground>
     </>
   );
