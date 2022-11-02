@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Alert, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../theme/styles";
 import {
   Input,
@@ -10,7 +10,7 @@ import {
 } from "../components";
 import { Formik } from "formik";
 import { SignInSchema } from "../validations/SignInSchema";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { AuthErrorCodes, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../db/firebase";
 import { UserContext } from "../context/UserContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -47,7 +47,13 @@ export const SingInScreen = ({ route }) => {
         setUser((prev) => ({ ...prev, email: values.email }));
         storeUser(values.email);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if ( err = "auth/email-already-in-use" ){
+          return Alert.alert("Error: ", "This email is already in use");
+        } else {
+          return alert("We couldn't process the petition, try again later");
+        }
+      });
   };
 
   if (initializing) return <ActivityIndicator />;

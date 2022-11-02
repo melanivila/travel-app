@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Alert, Modal, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../theme/styles";
 import { TextInput } from "react-native-gesture-handler";
+import { useFirestore } from "../hooks/useFirestore";
 
 export const UserModal = ({ modalVisible, setModalVisible, username }) => {
   const [text, setText] = useState();
+  const { saveUsername } = useFirestore();
 
   return (
     <View style={{ marginTop: 22 }}>
@@ -42,8 +44,7 @@ export const UserModal = ({ modalVisible, setModalVisible, username }) => {
                 <TouchableOpacity
                   onPress={() => {
                     setModalVisible(false);
-                    setText((text) => username = text);
-                    console.log(username);
+                    saveUsername( text );
                   }}
                 >
                   <Text style={styles.saveBtn}>Save</Text>

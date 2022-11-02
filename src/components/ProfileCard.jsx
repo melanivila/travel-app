@@ -5,14 +5,16 @@ import { COLORS } from "../theme/theme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { UserModal } from "./UserModal";
 import { useNavigation } from "@react-navigation/native";
+import { useFirestore } from "../hooks/useFirestore";
 
-export const ProfileCard = ({ username, email, logOut }) => {
+export const ProfileCard = ({ email, logOut }) => {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  const [input, setInput] = useState(username);
-
   const navigation = useNavigation();
+
+  const { username } = useFirestore();
+  // console.log(username);
 
   return (
     <View style={styles.profileCard}>

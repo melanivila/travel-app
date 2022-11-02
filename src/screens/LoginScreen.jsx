@@ -38,7 +38,13 @@ export const LoginScreen = ({ route, navigation }) => {
         setUser((prev) => ({ ...prev, email: values.email }));
         storeUser(values.email);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if ( err = "auth/user-not-found" || "auth/wrong-password" ){
+          return alert("Email or password are wrong");
+        } else {
+          return alert("We couldn't process the petition, try again later");
+        }
+      });
   };
 
   return (

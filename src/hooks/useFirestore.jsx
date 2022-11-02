@@ -7,6 +7,7 @@ export const useFirestore = () => {
   const { user } = useContext(UserContext);
   const [isFavItem, setIsFavItem] = useState(false);
   const [favList, setFavList] = useState([]);
+  const [username, setUsername] = useState("");
 
   const getOrCreateFavList = async () => {
     const docRef = doc(firestore, `users/${user.email}`);
@@ -17,6 +18,7 @@ export const useFirestore = () => {
     } else {
       setDoc(docRef, {
         favorites: [...favList],
+        username: "",
       });
       const fetchedData = await res.data();
       setFavList((prev) => (prev = fetchedData.favorites));
@@ -63,7 +65,20 @@ export const useFirestore = () => {
 
   useEffect(() => {
     getOrCreateFavList();
-  }, [favList]);
+    saveUsername( "Melani" );
+    console.log(username)
+  }, [username]);
+
+  const saveUsername = async ( userInput ) => {
+    const docRef = doc(firestore, `users/${user.email}`);
+    const res = await getDoc(docRef);
+    updateDoc(docRef, {
+      username: userInput,
+    });
+    const fetchedData = await res.data();
+    setUsername( userInput );
+      // console.log( fetchedData.username )
+    };
 
   return {
     isFavItem,
@@ -72,5 +87,7 @@ export const useFirestore = () => {
     getOrCreateFavList,
     addFavItem,
     deleteFav,
+    saveUsername,
+    username,
   };
 };

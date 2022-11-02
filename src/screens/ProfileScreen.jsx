@@ -43,7 +43,6 @@ export const ProfileScreen = () => {
         >
           <ProfileCard
             email={user.email}
-            username="melani.vila"
             logOut={logOut}
           />
         </View>
