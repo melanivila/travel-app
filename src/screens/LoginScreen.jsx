@@ -65,7 +65,7 @@ export const LoginScreen = ({ route, navigation }) => {
             errors,
             touched,
           }) => (
-            <View style={styles.basicContainer}>
+            <View style={styles.formContainer}>
               <Text style={styles.title}>Login</Text>
               <View style={styles.inputsContainer}>
                 <View>
@@ -102,22 +102,24 @@ export const LoginScreen = ({ route, navigation }) => {
                     <Text style={styles.validationText}>{errors.password}</Text>
                   ) : null}
                 </View>
+                <View style={{ alignItems: "center" }}>
+                  <CommonBtn title="Log In" onPress={handleSubmit} />
+                  <Text style={{ color: COLORS.white, fontSize: SIZES.body3 }}>
+                    Forgot your password?{" "}
+                    <Text
+                      style={{
+                        fontWeight: "bold",
+                        color: COLORS.bluesky,
+                        textDecorationLine: "underline",
+                      }}
+                      onPress={() => navigation.navigate("ForgotPassword", { uri })}
+                    >
+                      Reset
+                    </Text>
+                  </Text>
+                </View>
               </View>
-              <CommonBtn title="Log In" onPress={handleSubmit} />
-              <Text style={{ color: COLORS.white, fontSize: SIZES.body3 }}>
-                Forgot your password?{" "}
-                <Text
-                  style={{
-                    fontWeight: "bold",
-                    color: COLORS.bluesky,
-                    textDecorationLine: "underline",
-                  }}
-                  onPress={() => navigation.navigate("ForgotPassword", { uri })}
-                >
-                  Reset
-                </Text>
-              </Text>
-            </View>
+              </View>
           )}
         </Formik>
       </ImgBackground>
