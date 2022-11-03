@@ -6,6 +6,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { UserModal } from "./UserModal";
 import { useNavigation } from "@react-navigation/native";
 import { useFirestore } from "../hooks/useFirestore";
+import { DeleteAccountBtn } from "./DeleteAccountBtn";
 
 export const ProfileCard = ({ email, logOut }) => {
 
@@ -72,9 +73,7 @@ export const ProfileCard = ({ email, logOut }) => {
         <Text style={styles.deleteAccountBtn}>Log out</Text>
       </TouchableOpacity> */}
       <View>
-        <TouchableOpacity>
-          <Text style={styles.deleteAccountBtn}>Delete Account</Text>
-        </TouchableOpacity>
+        {/* <DeleteAccountBtn onPress={ email }/> */}
       </View>
     </View>
   );
