@@ -13,3 +13,4 @@ export { POIDetails } from "./POIDetails";
 export { SearchBar } from "./SearchBar";
 export { SearchCard } from "./SearchCard";
 export { DeleteAccountBtn } from "./DeleteAccountBtn";
+export { FavBtn } from "./FavBtn";

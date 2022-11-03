@@ -4,9 +4,15 @@ import { styles } from "../theme/styles";
 import { TextInput } from "react-native-gesture-handler";
 import { useFirestore } from "../hooks/useFirestore";
 
-export const UserModal = ({ modalVisible, setModalVisible, username }) => {
-  const [text, setText] = useState();
-  const { saveUsername } = useFirestore();
+export const UserModal = ({ modalVisible, setModalVisible }) => {
+  const [text, setText] = useState("");
+  const { saveUsername, getUsername } = useFirestore();
+
+  const handleClick = () => {
+    saveUsername(text);
+    getUsername();
+    setModalVisible(false);
+  };
 
   return (
     <View style={{ marginTop: 22 }}>
@@ -24,7 +30,11 @@ export const UserModal = ({ modalVisible, setModalVisible, username }) => {
           <View style={styles.modalBackground}>
             <View>
               <Text style={styles.modalText}>Change username:</Text>
-              <TextInput style={styles.modalInput} value={ text } onChangeText={ text => setText(text) }/>
+              <TextInput
+                style={styles.modalInput}
+                value={text}
+                onChangeText={(text) => setText(text)}
+              />
 
               <View
                 style={{
@@ -41,12 +51,7 @@ export const UserModal = ({ modalVisible, setModalVisible, username }) => {
                   <Text style={styles.deleteAccountBtn}>Close</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity
-                  onPress={() => {
-                    setModalVisible(false);
-                    saveUsername( text );
-                  }}
-                >
+                <TouchableOpacity onPress={handleClick}>
                   <Text style={styles.saveBtn}>Save</Text>
                 </TouchableOpacity>
               </View>
