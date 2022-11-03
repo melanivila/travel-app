@@ -12,3 +12,4 @@ export { LocationDetails } from "./LocationDetails";
 export { POIDetails } from "./POIDetails";
 export { SearchBar } from "./SearchBar";
 export { SearchCard } from "./SearchCard";
+export { FavBtn } from "./FavBtn";

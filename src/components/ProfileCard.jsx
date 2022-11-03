@@ -1,20 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../theme/styles";
 import { COLORS } from "../theme/theme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { UserModal } from "./UserModal";
 import { useNavigation } from "@react-navigation/native";
-import { useFirestore } from "../hooks/useFirestore";
 
 export const ProfileCard = ({ email, logOut }) => {
-
   const [modalVisible, setModalVisible] = useState(false);
-
   const navigation = useNavigation();
-
-  const { username } = useFirestore();
-  // console.log(username);
 
   return (
     <View style={styles.profileCard}>
@@ -31,9 +25,7 @@ export const ProfileCard = ({ email, logOut }) => {
       </TouchableOpacity>
       <View style={{ right: 15 }}>
         <View style={{ alignItems: "center", flexDirection: "row" }}>
-          <Text style={styles.profileText}>Username:</Text>
-          <Text style={{ fontSize: 15 }}>{username}</Text>
-
+          <Text style={styles.profileText}>Add/Change username</Text>
           <TouchableOpacity
             onPress={() => {
               setModalVisible(true);
@@ -56,7 +48,7 @@ export const ProfileCard = ({ email, logOut }) => {
 
       {modalVisible && (
         <View>
-          <UserModal setModalVisible={setModalVisible} modalVisible username />
+          <UserModal setModalVisible={setModalVisible} modalVisible />
         </View>
       )}
 
@@ -68,9 +60,7 @@ export const ProfileCard = ({ email, logOut }) => {
           onPress={() => navigation.navigate("Fav")}
         />
       </TouchableOpacity>
-      {/* <TouchableOpacity onPress={logOut}>
-        <Text style={styles.deleteAccountBtn}>Log out</Text>
-      </TouchableOpacity> */}
+
       <View>
         <TouchableOpacity>
           <Text style={styles.deleteAccountBtn}>Delete Account</Text>

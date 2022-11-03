@@ -6,11 +6,11 @@ import {
   POIDetails,
   LocationDetails,
   Loading,
+  FavBtn,
 } from "../components";
 import { styles } from "../theme/styles";
 import { useFetchDetails } from "../hooks/useFetchDetails";
 import { SIZES } from "../theme/theme";
-import FavBtn from "../components/FavBtn";
 
 export const DetailsScreen = ({ route }) => {
   const { jsonParam, location } = route.params;

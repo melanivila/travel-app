@@ -4,7 +4,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { COLORS } from "../theme/theme";
 import { useFirestore } from "../hooks/useFirestore";
 
-function FavBtn({ favItem, jsonParam }) {
+export const FavBtn = ({ favItem, jsonParam }) => {
   const { addFavItem, isFavItem, checkFavExists } = useFirestore();
 
   useEffect(() => {
@@ -23,6 +23,4 @@ function FavBtn({ favItem, jsonParam }) {
       />
     </TouchableOpacity>
   );
-}
-
-export default FavBtn;
+};
