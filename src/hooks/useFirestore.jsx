@@ -21,7 +21,7 @@ export const useFirestore = () => {
         username: "",
       });
       const fetchedData = await res.data();
-      setFavList((prev) => (prev = fetchedData.favorites));
+      setFavList((prev) => (prev = fetchedData?.favorites));
     }
   };
 

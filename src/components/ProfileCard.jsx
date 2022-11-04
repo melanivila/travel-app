@@ -5,6 +5,7 @@ import { COLORS } from "../theme/theme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { UserModal } from "./UserModal";
 import { useNavigation } from "@react-navigation/native";
+import { DeleteAccountBtn } from "./DeleteAccountBtn";
 
 export const ProfileCard = ({ email, logOut }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -62,7 +63,7 @@ export const ProfileCard = ({ email, logOut }) => {
       </TouchableOpacity>
 
       <View>
-        {/* <DeleteAccountBtn onPress={ email }/> */}
+        <DeleteAccountBtn/>
       </View>
     </View>
   );
