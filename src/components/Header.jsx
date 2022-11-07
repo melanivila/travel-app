@@ -26,18 +26,7 @@ export const Header = ({ icon, title, subTitle, render }) => {
             <Image
               source={require("../assets/logoTravelOn.png")}
               style={{ width: 60, height: 60 }}
-              tintColor={COLORS.lightblue}
             />
-            <Text
-              style={{
-                position: "absolute",
-                color: COLORS.black,
-                // fontSize: SIZES.h3,
-                // fontWeight: "bold",
-              }}
-            >
-              TravelOn
-            </Text>
           </View>
         )}
         <View
