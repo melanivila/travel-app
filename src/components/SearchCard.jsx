@@ -52,7 +52,7 @@ export const SearchCard = ({ item, deleteIcon }) => {
         </Text>
         <Text>
           {item.snippet.length > 100
-            ? `${item.snippet.slice(0, 100)}...`
+            ? `${item.snippet.slice(0, 80)}...`
             : item.snippet}
         </Text>
       </View>
