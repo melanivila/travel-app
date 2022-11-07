@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { usePopularLocation } from "../hooks/usePopularLocation";
-import { CommonFlatList } from "../components/CommonFlatList";
-import { Header } from "../components/Header";
+import { CommonFlatList, Header } from "../components";
 import { styles } from "../theme/styles";
 import { useFirestore } from "../hooks/useFirestore";
 import { COLORS, SIZES } from "../theme/theme";
@@ -19,7 +18,6 @@ export const LoggedScreen = () => {
 
   useEffect(() => {
     getUsername();
-    console.log(newUserName);
   }, [newUserName]);
 
   return (
@@ -30,7 +28,7 @@ export const LoggedScreen = () => {
           {newUserName ? (
             <Text style={{ fontWeight: "bold", top: 15, fontSize: SIZES.h3 }}>
               Welcome,{" "}
-              <Text style={{ color: COLORS.bluesky }}>{newUserName}</Text>
+              <Text style={{ color: COLORS.bluesky }}>{newUserName}</Text>!
             </Text>
           ) : (
             <Text style={{ fontWeight: "bold", top: 15, fontSize: SIZES.h3 }}>

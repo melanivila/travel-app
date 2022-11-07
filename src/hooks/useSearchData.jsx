@@ -10,8 +10,10 @@ export const useSearchData = ({ term, selectedOption }) => {
   }, [selectedOption, term]);
 
   const loadResults = async () => {
-    try {
+    if (term) {
       setLoading(true);
+    }
+    try {
       let url;
       if (selectedOption === "location") {
         url = `/location.json?annotate=trigram:${term}&trigram=%3E=0.5&count=10&fields=all`;

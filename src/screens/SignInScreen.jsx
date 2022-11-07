@@ -1,5 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ActivityIndicator, Alert, Text, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { styles } from "../theme/styles";
 import {
   Input,
@@ -10,10 +16,11 @@ import {
 } from "../components";
 import { Formik } from "formik";
 import { SignInSchema } from "../validations/SignInSchema";
-import { AuthErrorCodes, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../db/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, firestore } from "../db/firebase";
 import { UserContext } from "../context/UserContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { doc, setDoc } from "firebase/firestore";
 
 export const SingInScreen = ({ route }) => {
   const { uri } = route.params;
@@ -43,12 +50,17 @@ export const SingInScreen = ({ route }) => {
   const handleRegister = (values) => {
     createUserWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredentials) => {
-        console.log(userCredentials);
+        // console.log(userCredentials);
         setUser((prev) => ({ ...prev, email: values.email }));
+        const docRef = doc(firestore, `users/${values.email}`);
+        setDoc(docRef, {
+          favorites: [],
+          username: "",
+        });
         storeUser(values.email);
       })
       .catch((err) => {
-        if ( err = "auth/email-already-in-use" ){
+        if ((err = "auth/email-already-in-use")) {
           return Alert.alert("Error: ", "This email is already in use");
         } else {
           return alert("We couldn't process the petition, try again later");
@@ -62,75 +74,75 @@ export const SingInScreen = ({ route }) => {
     <>
       <ImgBackground uri={uri}>
         <BackIcon name="arrow-back-outline" size={45} color="white" />
-          <Formik
-            initialValues={{ email: "", password: "", confirmPassword: "" }}
-            onSubmit={(values) => handleRegister(values)}
-            validationSchema={SignInSchema}
-          >
-            {({
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              values,
-              errors,
-              touched,
-            }) => (
-              <View style={styles.formContainer}>
-                <Text style={styles.title}>Sign In</Text>
-                <View style={styles.inputsContainer}>
-                  <View>
+        <Formik
+          initialValues={{ email: "", password: "", confirmPassword: "" }}
+          onSubmit={(values) => handleRegister(values)}
+          validationSchema={SignInSchema}
+        >
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+          }) => (
+            <View style={styles.formContainer}>
+              <Text style={styles.title}>Sign In</Text>
+              <View style={styles.inputsContainer}>
+                <View>
+                  <Input
+                    text="Email:"
+                    value={values.email}
+                    onChangeText={handleChange("email")}
+                    onBlur={handleBlur("email")}
+                    keyboard="email-address"
+                  />
+                  {errors.email && touched.email ? (
+                    <Text style={styles.validationText}>{errors.email}</Text>
+                  ) : null}
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
                     <Input
-                      text="Email:"
-                      value={values.email}
-                      onChangeText={handleChange("email")}
-                      onBlur={handleBlur("email")}
-                      keyboard="email-address"
-                    />
-                    {errors.email && touched.email ? (
-                      <Text style={styles.validationText}>{errors.email}</Text>
-                    ) : null}
-                    <View style={{ flexDirection: "row", alignItems: "center" }}>
-                      <Input
-                        text="Password:"
-                        value={values.password}
-                        visible={isHidden}
-                        onChangeText={handleChange("password")}
-                        onBlur={handleBlur("password")}
-                      />
-                      <TouchableOpacity
-                        onPress={() => setIsHidden(!isHidden)}
-                        style={{
-                          zIndex: 999,
-                          position: "absolute",
-                          right: 10,
-                        }}
-                      >
-                        <EyeIcon isHidden={isHidden} />
-                      </TouchableOpacity>
-                    </View>
-                    {errors.password && touched.password ? (
-                      <Text style={styles.validationText}>{errors.password}</Text>
-                    ) : null}
-                    <Input
-                      text="Confirm Password:"
-                      value={values.confirmPassword}
+                      text="Password:"
+                      value={values.password}
                       visible={isHidden}
-                      onChangeText={handleChange("confirmPassword")}
-                      onBlur={handleBlur("confirmPassword")}
+                      onChangeText={handleChange("password")}
+                      onBlur={handleBlur("password")}
                     />
-                    {errors.confirmPassword && touched.confirmPassword ? (
-                      <Text style={styles.validationText}>
-                        {errors.confirmPassword}
-                      </Text>
-                    ) : null}
+                    <TouchableOpacity
+                      onPress={() => setIsHidden(!isHidden)}
+                      style={{
+                        zIndex: 999,
+                        position: "absolute",
+                        right: 10,
+                      }}
+                    >
+                      <EyeIcon isHidden={isHidden} />
+                    </TouchableOpacity>
                   </View>
-                  <View>
-                    <CommonBtn title="Sign in" onPress={handleSubmit} />
-                  </View>
+                  {errors.password && touched.password ? (
+                    <Text style={styles.validationText}>{errors.password}</Text>
+                  ) : null}
+                  <Input
+                    text="Confirm Password:"
+                    value={values.confirmPassword}
+                    visible={isHidden}
+                    onChangeText={handleChange("confirmPassword")}
+                    onBlur={handleBlur("confirmPassword")}
+                  />
+                  {errors.confirmPassword && touched.confirmPassword ? (
+                    <Text style={styles.validationText}>
+                      {errors.confirmPassword}
+                    </Text>
+                  ) : null}
+                </View>
+                <View>
+                  <CommonBtn title="Sign in" onPress={handleSubmit} />
                 </View>
               </View>
-            )}
-          </Formik>
+            </View>
+          )}
+        </Formik>
       </ImgBackground>
     </>
   );

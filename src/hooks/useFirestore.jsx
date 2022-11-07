@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { firestore } from "../db/firebase";
 import { UserContext } from "../context/UserContext";
 
@@ -9,20 +9,11 @@ export const useFirestore = () => {
   const [favList, setFavList] = useState([]);
   const [newUserName, setNewUserName] = useState("");
 
-  const getOrCreateFavList = async () => {
+  const getFavList = async () => {
     const docRef = doc(firestore, `users/${user.email}`);
     const res = await getDoc(docRef);
-    if (res.exists()) {
-      const fetchedData = await res.data();
-      setFavList((prev) => (prev = fetchedData?.favorites));
-    } else {
-      setDoc(docRef, {
-        favorites: [...favList],
-        username: "",
-      });
-      const fetchedData = await res.data();
-      setFavList((prev) => (prev = fetchedData?.favorites));
-    }
+    const fetchedData = res.data();
+    setFavList((prev) => (prev = fetchedData?.favorites));
   };
 
   const checkFavExists = async (item) => {
@@ -78,14 +69,14 @@ export const useFirestore = () => {
   };
 
   useEffect(() => {
-    getOrCreateFavList();
+    getFavList();
   }, []);
 
   return {
     isFavItem,
     favList,
     checkFavExists,
-    getOrCreateFavList,
+    getFavList,
     addFavItem,
     deleteFav,
     saveUsername,

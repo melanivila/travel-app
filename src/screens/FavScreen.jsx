@@ -5,10 +5,10 @@ import { Header, SearchCard } from "../components";
 import { styles } from "../theme/styles";
 
 export const FavScreen = ({ navigation }) => {
-  const { favList, getOrCreateFavList } = useFirestore();
+  const { favList, getFavList } = useFirestore();
 
   useEffect(() => {
-    getOrCreateFavList();
+    getFavList();
   }, [favList]);
 
   return (

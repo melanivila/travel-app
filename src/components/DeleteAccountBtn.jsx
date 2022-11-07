@@ -1,88 +1,87 @@
-import { AuthCredential, EmailAuthCredential, EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
-import React, { useContext, useState } from 'react'
-import { Alert, Text, TextInput, TouchableOpacity } from "react-native";
-import { UserContext } from '../context/UserContext';
-import { app, auth } from '../db/firebase';
+import React, { useContext, useState } from "react";
+import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
+import { doc, deleteDoc } from "firebase/firestore";
+import { UserContext } from "../context/UserContext";
+import { auth, firestore } from "../db/firebase";
 import { styles } from "../theme/styles";
-import { Input } from './Input';
 
 export const DeleteAccountBtn = () => {
-  
-  const { uid, email } = auth.currentUser;
-  const { user } = useContext( UserContext );
+  const navigation = useNavigation();
+  const { setUser } = useContext(UserContext);
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
 
-  function reauthenticateUser() {  
-
- if ( !visible ) {
-  
-  setVisible( true );
-
- } else {
+  const reauthenticateUser = () => {
+    if (!visible) {
+      setVisible(true);
+    } else {
       let user = auth.currentUser;
-  
-      let credential = EmailAuthProvider.credential( email, password );
-  
-      reauthenticateWithCredential( user, credential )
-        .then(result => { console.log( "Succesfuly authenticated", password ) })
-        .catch(error => { console.log( error ) });
+
+      let credential = EmailAuthProvider.credential(user.email, password);
+
+      reauthenticateWithCredential(user, credential)
+        .then(() => {
+          Alert.alert(
+            "Delete account",
+            "Are you sure you wanna delete your account?",
+            [
+              {
+                text: "No",
+                onPress: () => {
+                  setVisible(false);
+                  navigation.navigate("Home");
+                },
+              },
+              { text: "Yes", onPress: () => handleDelete() },
+            ]
+          );
+        })
+        .catch((error) => {
+          if ((error = "auth/wrong-password")) {
+            Alert.alert("Error", "Wrong password");
+          } else {
+            Alert.alert("Error", "Something went wrong, try again later");
+          }
+        });
     }
-} 
-
-
-  const logOut = () => {
-    auth
-      .signOut()
-      .then(() => {
-        console.log("succesfully signout");
-      })
-      .catch((err) => console.log(err));
   };
 
   const handleDelete = () => {
-
-      auth.currentUser
-      .reauthenticateWithCredential( user, AuthCredential )
-      .delete( uid )
-      .then((userCredentials) => {
-        
-        console.log('Successfully deleted user');
-        logOut();
+    const { uid, email } = auth.currentUser;
+    AsyncStorage.removeItem("email");
+    auth.currentUser
+      .delete(uid)
+      .then(() => {
+        deleteDoc(doc(firestore, "users", email));
+        setUser("");
+        Alert.alert("See you soon!", "Your account has been deleted");
       })
       .catch((error) => {
-        console.log('Error deleting user:', error);
+        console.log("Error deleting user:", error);
       });
-    }
-
-  const createDeleteAlert = () =>
-    Alert.alert(
-      "Delete account",
-      "Are you sure you wanna delete your account?",
-      [
-        {
-          text: "Cancel",
-          style: "cancel"
-        },
-        { text: "Delete", onPress: () => handleDelete() }
-      ]
-  );
+  };
 
   return (
-    <>
-    {
-      visible && <TextInput
-      placeholder="Search..."
-      style={styles.searchInput}
-      autoCapitalize="none"
-      autoCorrect={false}
-      value={password}
-      onChangeText={setPassword}
-    />
-    }
-      <TouchableOpacity onPress={ reauthenticateUser }>
-        <Text style={ styles.deleteAccountBtn }> Delete Account </Text>
-      </TouchableOpacity>    
-    </>
-        );
+    <View
+      style={{ justifyContent: "center", height: 80, alignItems: "center" }}
+    >
+      {visible && (
+        <TextInput
+          placeholder="Write your password to confirm..."
+          style={{ ...styles.input, backgroundColor: "white" }}
+          autoCapitalize="none"
+          autoCorrect={false}
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={true}
+        />
+      )}
+      <TouchableOpacity onPress={reauthenticateUser}>
+        <Text style={styles.deleteAccountBtn}> Delete Account </Text>
+      </TouchableOpacity>
+    </View>
+  );
 };
