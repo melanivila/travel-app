@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useFirestore } from "../hooks/useFirestore";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import { Header, SearchCard } from "../components";
@@ -14,7 +14,13 @@ export const FavScreen = ({ navigation }) => {
   return (
     <>
       <Header title={"Travel On"} subTitle={"Favorites"} render />
-      <View style={{ ...styles.basicContainer, marginVertical: 30 }}>
+      <View
+        style={{
+          ...styles.basicContainer,
+          marginVertical: 30,
+          marginBottom: 20,
+        }}
+      >
         {favList.length !== 0 ? (
           <FlatList
             showsVerticalScrollIndicator={false}

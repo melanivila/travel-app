@@ -72,7 +72,7 @@ export const styles = StyleSheet.create({
   //SearchScreen
   searchBarContainer: {
     // top: 20,
-    zIndex: 999,
+    zIndex: 980,
     // position: "absolute",
     width: screenWidth - 30,
     marginHorizontal: 20,
@@ -135,10 +135,10 @@ export const styles = StyleSheet.create({
     zIndex: 999,
     shadowOffset: {
       width: 0,
-      height: 20,
+      height: 5,
     },
-    shadowOpacity: 0.9,
-    shadowRadius: 7.49,
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
     elevation: 10,
   },
 
@@ -160,10 +160,10 @@ export const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 20,
+      height: 5,
     },
-    shadowOpacity: 0.9,
-    shadowRadius: 7.49,
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
     elevation: 10,
   },
   deleteAccountBtn: {
@@ -196,7 +196,7 @@ export const styles = StyleSheet.create({
       width: 0,
       height: 3,
     },
-    shadowOpacity: 1,
+    shadowOpacity: 0.3,
     shadowRadius: 4.65,
     elevation: 11,
   },
@@ -258,9 +258,9 @@ export const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 20,
+      height: 5,
     },
-    shadowOpacity: 1,
+    shadowOpacity: 0.3,
     shadowRadius: 4.65,
     elevation: 6,
   },
@@ -273,10 +273,6 @@ export const styles = StyleSheet.create({
   modalText: {
     fontSize: 18,
     fontWeight: "bold",
-    marginBottom: 30,
-    shadowOpacity: 0.9,
-    shadowRadius: 7.49,
-    elevation: 10,
     marginBottom: 10,
   },
   carouselImgContainer: {
@@ -311,8 +307,8 @@ export const styles = StyleSheet.create({
       width: 0,
       height: 4,
     },
-    shadowOpacity: 0.9,
-    shadowRadius: 3.49,
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
     elevation: 5,
   },
   commonCardImg: {

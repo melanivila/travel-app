@@ -27,6 +27,7 @@ export const SearchBar = ({ onDebounce, onValueChange }) => {
             borderRightWidth: 1,
             borderRightColor: COLORS.lightGray,
             right: 10,
+            zIndex: 999,
           }}
         >
           <Picker
@@ -36,6 +37,7 @@ export const SearchBar = ({ onDebounce, onValueChange }) => {
               borderLeftColor: "black",
               borderLeftWidth: 1,
               width: 120,
+              height: 20,
               color: COLORS.gray,
             }}
             mode="dialog"
