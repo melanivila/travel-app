@@ -51,7 +51,7 @@ export const SearchCard = ({ item, deleteIcon }) => {
           {item.name.length > 20 ? `${item.name.slice(0, 20)}...` : item.name}
         </Text>
         <Text>
-          {item.snippet.length > 100
+          {item.snippet.length > 80
             ? `${item.snippet.slice(0, 80)}...`
             : item.snippet}
         </Text>
