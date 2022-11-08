@@ -12,12 +12,11 @@ export const usePopularLocation = () => {
   });
 
   useEffect(() => {
-    setIsLoading(true);
     getLocation();
-    setIsLoading(false);
   }, []);
 
   const getLocation = async () => {
+    setIsLoading(true);
     const popularPlacesPromise = travelApi.get("/poi.json?");
     const popularCitiesPromise = travelApi.get(
       "/location.json?tag_labels=city"
@@ -47,6 +46,8 @@ export const usePopularLocation = () => {
       popularReserves: response[3].data.results,
       popularIslands: response[4].data.results,
     });
+
+    setIsLoading(false);
   };
 
   return {

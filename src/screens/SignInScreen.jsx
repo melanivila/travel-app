@@ -25,7 +25,7 @@ import { doc, setDoc } from "firebase/firestore";
 export const SingInScreen = ({ route }) => {
   const { uri } = route.params;
   const [isHidden, setIsHidden] = useState(true);
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const [initializing, setInitializing] = useState(true);
 
   const stateChange = (user) => {
@@ -48,16 +48,17 @@ export const SingInScreen = ({ route }) => {
   }, []);
 
   const handleRegister = (values) => {
-    createUserWithEmailAndPassword(auth, values.email, values.password)
+    const email = values.email.toLowerCase();
+    createUserWithEmailAndPassword(auth, email, values.password)
       .then((userCredentials) => {
         // console.log(userCredentials);
-        setUser((prev) => ({ ...prev, email: values.email }));
-        const docRef = doc(firestore, `users/${values.email}`);
+        setUser((prev) => ({ ...prev, email: email }));
+        const docRef = doc(firestore, `users/${email}`);
         setDoc(docRef, {
           favorites: [],
           username: "",
         });
-        storeUser(values.email);
+        storeUser(email);
       })
       .catch((err) => {
         if ((err = "auth/email-already-in-use")) {

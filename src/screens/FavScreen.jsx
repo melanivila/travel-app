@@ -21,7 +21,7 @@ export const FavScreen = ({ navigation }) => {
           marginBottom: 20,
         }}
       >
-        {favList.length !== 0 ? (
+        {favList?.length !== 0 ? (
           <FlatList
             showsVerticalScrollIndicator={false}
             // keyExtractor={(item) => item.id}

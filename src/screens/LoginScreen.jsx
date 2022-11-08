@@ -10,7 +10,6 @@ import {
 } from "../components";
 import { Formik } from "formik";
 import { LogInSchema } from "../validations/LogInSchema";
-import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../context/UserContext";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../db/firebase";
@@ -18,7 +17,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { COLORS, SIZES } from "../theme/theme";
 
 export const LoginScreen = ({ route, navigation }) => {
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const [isHidden, setIsHidden] = useState(true);
 
   const storeUser = async (user) => {
@@ -33,13 +32,14 @@ export const LoginScreen = ({ route, navigation }) => {
   const { uri } = route.params;
 
   const handleLogin = (values) => {
-    signInWithEmailAndPassword(auth, values.email, values.password)
+    const email = values.email.toLowerCase();
+    signInWithEmailAndPassword(auth, email, values.password)
       .then((userCredentials) => {
-        setUser((prev) => ({ ...prev, email: values.email }));
-        storeUser(values.email);
+        setUser((prev) => ({ ...prev, email: email }));
+        storeUser(email);
       })
       .catch((err) => {
-        if ( err = "auth/user-not-found" || "auth/wrong-password" ){
+        if ((err = "auth/user-not-found" || "auth/wrong-password")) {
           return alert("Email or password are wrong");
         } else {
           return alert("We couldn't process the petition, try again later");
@@ -112,14 +112,16 @@ export const LoginScreen = ({ route, navigation }) => {
                         color: COLORS.bluesky,
                         textDecorationLine: "underline",
                       }}
-                      onPress={() => navigation.navigate("ForgotPassword", { uri })}
+                      onPress={() =>
+                        navigation.navigate("ForgotPassword", { uri })
+                      }
                     >
                       Reset
                     </Text>
                   </Text>
                 </View>
               </View>
-              </View>
+            </View>
           )}
         </Formik>
       </ImgBackground>
