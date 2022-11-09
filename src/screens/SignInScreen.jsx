@@ -51,7 +51,6 @@ export const SingInScreen = ({ route }) => {
     const email = values.email.toLowerCase();
     createUserWithEmailAndPassword(auth, email, values.password)
       .then((userCredentials) => {
-        // console.log(userCredentials);
         setUser((prev) => ({ ...prev, email: email }));
         const docRef = doc(firestore, `users/${email}`);
         setDoc(docRef, {

@@ -24,7 +24,6 @@ export const FavScreen = ({ navigation }) => {
         {favList?.length !== 0 ? (
           <FlatList
             showsVerticalScrollIndicator={false}
-            // keyExtractor={(item) => item.id}
             data={favList}
             renderItem={({ item }) => (
               <TouchableOpacity
