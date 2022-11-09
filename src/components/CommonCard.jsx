@@ -29,7 +29,7 @@ export const CommonCard = ({ item }) => {
       {/* )} */}
       <View style={styles.commonCardContainer}>
         <Text style={styles.commonCardTitle}>
-          {item.name.length > 20 ? `${item.name.slice(0, 20)}...` : item.name}
+          {item.name.length > 20 ? `${item.name.slice(0, 15)}...` : item.name}
         </Text>
         <Text style={styles.commonCardSnippet}>
           {item.snippet.length > 80
