@@ -11,7 +11,6 @@ export const styles = StyleSheet.create({
   },
   commonContainer: {
     flex: 1,
-    // marginTop: 30,
     marginLeft: 30,
     marginBottom: 100,
   },
@@ -71,9 +70,7 @@ export const styles = StyleSheet.create({
 
   //SearchScreen
   searchBarContainer: {
-    // top: 20,
     zIndex: 980,
-    // position: "absolute",
     width: screenWidth - 30,
     marginHorizontal: 20,
   },
@@ -124,7 +121,7 @@ export const styles = StyleSheet.create({
 
   //HomeLoggedScreen
   loggedScreenHeader: {
-    backgroundColor: "white",
+    backgroundcolor: COLORS.white,
     width: screenWidth,
     height: 60,
     paddingHorizontal: 20,
@@ -200,6 +197,17 @@ export const styles = StyleSheet.create({
     shadowRadius: 4.65,
     elevation: 11,
   },
+  saveBtn: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: COLORS.bluesky,
+    marginHorizontal: 10,
+  },
+  modalText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
 
   //DetailsScreen
   detailsContainer: {
@@ -264,17 +272,6 @@ export const styles = StyleSheet.create({
     shadowRadius: 4.65,
     elevation: 6,
   },
-  saveBtn: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: COLORS.bluesky,
-    marginHorizontal: 10,
-  },
-  modalText: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
   carouselImgContainer: {
     height: screenHeight * 0.48,
     width: screenWidth - 80,
@@ -297,7 +294,7 @@ export const styles = StyleSheet.create({
   commonCardImgContainer: {
     flexDirection: "row",
     borderRadius: SIZES.radius,
-    backgroundColor: "white",
+    backgroundColor: COLORS.white,
     height: 210,
     alignItems: "flex-end",
     marginRight: 30,
@@ -318,7 +315,6 @@ export const styles = StyleSheet.create({
     position: "absolute",
   },
   commonCardContainer: {
-    // top: 90,
     backgroundColor: COLORS.transparentBlack6,
     width: 250,
     alignItems: "center",
@@ -329,20 +325,20 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   commonCardTitle: {
-    color: "white",
+    color: COLORS.white,
     fontWeight: "bold",
     fontSize: 18,
     textAlign: "center",
     bottom: 8,
   },
   commonCardSnippet: {
-    color: "white",
+    color: COLORS.white,
     fontSize: 14,
     alignSelf: "flex-start",
   },
   // Validations
   validationText: {
-    color: "#D2001A",
+    color: COLORS.redAlert,
     fontWeight: "bold",
     fontSize: 14.5,
   },

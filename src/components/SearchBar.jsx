@@ -34,7 +34,7 @@ export const SearchBar = ({ onDebounce, onValueChange }) => {
             selectedValue={selectedOption}
             onValueChange={setSelectedOption}
             style={{
-              borderLeftColor: "black",
+              borderLeftColor: COLORS.black,
               borderLeftWidth: 1,
               width: 120,
               height: 20,

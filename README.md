@@ -1,4 +1,4 @@
-# TravelOn!!["Random Recipe logo"](https://github.com/melanivila/RandomRecipes/blob/master/src/assets/images/tiny-logo.png)
+# TravelOn ✈!!
 
 ## _If you are a travel lover, you need TravelOn_
 
