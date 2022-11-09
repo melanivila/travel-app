@@ -1,31 +1,32 @@
 import React from "react";
 import { Image, Text, View } from "react-native";
-import { usePopularLocation } from "../hooks/usePopularLocation";
+// import { usePopularLocation } from "../hooks/usePopularLocation";
 import { styles } from "../theme/styles";
-import { Loading } from "./Loading";
+// import { Loading } from "./Loading";
 
 export const CommonCard = ({ item }) => {
-  const { isLoading } = usePopularLocation();
+  // const { isLoading } = usePopularLocation();
   return (
     <View style={styles.commonCardImgContainer}>
-      {isLoading ? (
+      {/* Se desactivó el loading porque realizaba más peticiones a la API que las permitidas en el plan gratuito */}
+      {/* {isLoading ? (
         <View style={styles.commonCardImg}>
           <Loading />
         </View>
-      ) : (
-        <Image
-          source={{
-            uri:
-              item.images.length === 1
-                ? item.images[0].source_url
-                : item.images.length > 2
-                ? item.images[0].sizes.medium.url
-                : "https://www.quicideportes.com/assets/images/custom/no-image.png",
-          }}
-          style={styles.commonCardImg}
-          resizeMode="cover"
-        />
-      )}
+      ) : ( */}
+      <Image
+        source={{
+          uri:
+            item.images.length === 1
+              ? item.images[0].source_url
+              : item.images.length > 2
+              ? item.images[0].sizes.medium.url
+              : "https://www.quicideportes.com/assets/images/custom/no-image.png",
+        }}
+        style={styles.commonCardImg}
+        resizeMode="cover"
+      />
+      {/* )} */}
       <View style={styles.commonCardContainer}>
         <Text style={styles.commonCardTitle}>
           {item.name.length > 20 ? `${item.name.slice(0, 20)}...` : item.name}
