@@ -39,10 +39,11 @@ export const Header = ({ icon, title, subTitle, render }) => {
               fontWeight: "bold",
               textAlign: "center",
             }}
+            numberOfLines={1}
           >
             {title}
           </Text>
-          {subTitle && <Text>{subTitle}</Text>}
+          {subTitle && <Text numberOfLines={1}>{subTitle}</Text>}
         </View>
 
         <TouchableOpacity style={{ flex: 1.5, alignItems: "flex-end" }}>

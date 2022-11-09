@@ -20,6 +20,7 @@ export const Input = ({
         onChangeText={onChangeText}
         onBlur={onBlur}
         keyboardType={keyboard}
+        autoCapitalize={false}
       />
     </View>
   );

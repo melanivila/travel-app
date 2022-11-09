@@ -44,10 +44,9 @@ export const DetailsScreen = ({ route }) => {
                   fontSize:
                     placeDetails.name?.length > 15 ? SIZES.body3 : SIZES.h1,
                 }}
+                numberOfLines={1}
               >
-                {placeDetails.name?.length > 30
-                  ? `${placeDetails.name.slice(0, 30)}...`
-                  : placeDetails.name}
+                {placeDetails.name}
               </Text>
             </View>
           </Carousel>

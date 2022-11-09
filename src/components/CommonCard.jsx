@@ -28,13 +28,15 @@ export const CommonCard = ({ item }) => {
       />
       {/* )} */}
       <View style={styles.commonCardContainer}>
-        <Text style={styles.commonCardTitle}>
-          {item.name.length > 20 ? `${item.name.slice(0, 20)}...` : item.name}
+        <Text
+          style={styles.commonCardTitle}
+          numberOfLines={1}
+          ellipsizeMode="tail"
+        >
+          {item.name}
         </Text>
-        <Text style={styles.commonCardSnippet}>
-          {item.snippet.length > 80
-            ? `${item.snippet.slice(0, 80)}...`
-            : item.snippet}
+        <Text style={styles.commonCardSnippet} numberOfLines={3}>
+          {item.snippet}
         </Text>
       </View>
     </View>
